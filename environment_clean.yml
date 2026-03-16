@@ -1,0 +1,38 @@
+name: rl_env
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.8
+  - pip
+  - pip:
+    # Basic scientific computing and data processing
+    - numpy==1.24.4
+    - pandas==2.0.3
+    - scipy==1.10.1
+    - scikit-learn==1.3.2
+    - networkx==3.1
+    
+    # Visualization and image processing tools
+    - matplotlib==3.7.5
+    - seaborn==0.13.2
+    - pillow==10.4.0
+    - imageio==2.35.1
+    
+    # Interactive and experiment tracking tools
+    - jupyterlab==4.3.8
+    - ipywidgets==8.1.8
+    - tqdm==4.67.3
+    - pyyaml==6.0.3
+    - requests==2.32.4
+    
+    # RL environments and physics engines
+    - gym==0.23.1
+    - pybullet==3.2.7
+    - dm-control==1.0.23
+    - mujoco==3.2.3
+    - mujoco-py==2.1.2.14
+    
+    # Deep learning base utilities, excluding Torch itself
+    - absl-py==2.3.1
+    - h5py==3.11.0

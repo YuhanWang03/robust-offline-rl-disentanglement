@@ -1,0 +1,201 @@
+index,Method,Env,Dim,Scale,Type,mean,std,count,Method Name
+0,disentangled_barlow,halfcheetah-medium-v2,5,0.5,nonlinear,38.732191107226974,,1,Barlow
+1,disentangled_barlow,halfcheetah-medium-v2,5,1.0,nonlinear,39.30814126115979,,1,Barlow
+2,disentangled_barlow,halfcheetah-medium-v2,5,2.0,nonlinear,35.467938577185095,,1,Barlow
+3,disentangled_barlow,halfcheetah-medium-v2,5,4.0,nonlinear,12.899284289438675,,1,Barlow
+4,disentangled_barlow,halfcheetah-medium-v2,5,8.0,nonlinear,3.1021978565348074,,1,Barlow
+5,disentangled_barlow,halfcheetah-medium-v2,10,0.5,nonlinear,39.76312238812374,,1,Barlow
+6,disentangled_barlow,halfcheetah-medium-v2,10,1.0,nonlinear,37.82254202298094,,1,Barlow
+7,disentangled_barlow,halfcheetah-medium-v2,10,2.0,nonlinear,32.0919380796523,,1,Barlow
+8,disentangled_barlow,halfcheetah-medium-v2,10,4.0,nonlinear,5.132801947711605,,1,Barlow
+9,disentangled_barlow,halfcheetah-medium-v2,10,8.0,nonlinear,2.0328507055132934,,1,Barlow
+10,disentangled_barlow,halfcheetah-medium-v2,20,0.5,nonlinear,39.94597588204635,,1,Barlow
+11,disentangled_barlow,halfcheetah-medium-v2,20,1.0,nonlinear,7.523050391662449,,1,Barlow
+12,disentangled_barlow,halfcheetah-medium-v2,20,2.0,nonlinear,15.425117755068266,,1,Barlow
+13,disentangled_barlow,halfcheetah-medium-v2,20,4.0,nonlinear,2.8256423648559057,,1,Barlow
+14,disentangled_barlow,halfcheetah-medium-v2,20,8.0,nonlinear,1.1934784921404646,,1,Barlow
+15,disentangled_barlow,halfcheetah-medium-v2,40,0.5,nonlinear,38.973095066132935,,1,Barlow
+16,disentangled_barlow,halfcheetah-medium-v2,40,1.0,nonlinear,34.84230037056707,,1,Barlow
+17,disentangled_barlow,halfcheetah-medium-v2,40,2.0,nonlinear,7.176342435000181,,1,Barlow
+18,disentangled_barlow,halfcheetah-medium-v2,40,4.0,nonlinear,2.0609562659033447,,1,Barlow
+19,disentangled_barlow,halfcheetah-medium-v2,40,8.0,nonlinear,0.9647587202769015,,1,Barlow
+20,disentangled_barlow,halfcheetah-medium-v2,80,0.5,nonlinear,37.0619270175679,,1,Barlow
+21,disentangled_barlow,halfcheetah-medium-v2,80,1.0,nonlinear,27.122488546912244,,1,Barlow
+22,disentangled_barlow,halfcheetah-medium-v2,80,2.0,nonlinear,4.623743420549037,,1,Barlow
+23,disentangled_barlow,halfcheetah-medium-v2,80,4.0,nonlinear,1.2789582092930747,,1,Barlow
+24,disentangled_barlow,halfcheetah-medium-v2,80,8.0,nonlinear,0.8853255906731845,,1,Barlow
+25,disentangled_cov,halfcheetah-medium-v2,5,0.5,nonlinear,36.1021150711811,,1,Covariance
+26,disentangled_cov,halfcheetah-medium-v2,5,1.0,nonlinear,36.60114236524346,,1,Covariance
+27,disentangled_cov,halfcheetah-medium-v2,5,2.0,nonlinear,34.078712567889966,,1,Covariance
+28,disentangled_cov,halfcheetah-medium-v2,5,4.0,nonlinear,12.61509012587958,,1,Covariance
+29,disentangled_cov,halfcheetah-medium-v2,5,8.0,nonlinear,3.7209797179375017,,1,Covariance
+30,disentangled_cov,halfcheetah-medium-v2,10,0.5,nonlinear,38.97541698506905,,1,Covariance
+31,disentangled_cov,halfcheetah-medium-v2,10,1.0,nonlinear,37.07102973086959,,1,Covariance
+32,disentangled_cov,halfcheetah-medium-v2,10,2.0,nonlinear,29.237857156310774,,1,Covariance
+33,disentangled_cov,halfcheetah-medium-v2,10,4.0,nonlinear,6.258701438276446,,1,Covariance
+34,disentangled_cov,halfcheetah-medium-v2,10,8.0,nonlinear,1.437533792081932,,1,Covariance
+35,disentangled_cov,halfcheetah-medium-v2,20,0.5,nonlinear,38.78524014851413,,1,Covariance
+36,disentangled_cov,halfcheetah-medium-v2,20,1.0,nonlinear,7.7467761417822505,,1,Covariance
+37,disentangled_cov,halfcheetah-medium-v2,20,2.0,nonlinear,16.571264929489473,,1,Covariance
+38,disentangled_cov,halfcheetah-medium-v2,20,4.0,nonlinear,2.854960830914853,,1,Covariance
+39,disentangled_cov,halfcheetah-medium-v2,20,8.0,nonlinear,1.4321048810800239,,1,Covariance
+40,disentangled_cov,halfcheetah-medium-v2,40,0.5,nonlinear,37.60598551945972,,1,Covariance
+41,disentangled_cov,halfcheetah-medium-v2,40,1.0,nonlinear,32.36550977724701,,1,Covariance
+42,disentangled_cov,halfcheetah-medium-v2,40,2.0,nonlinear,8.055176374373966,,1,Covariance
+43,disentangled_cov,halfcheetah-medium-v2,40,4.0,nonlinear,2.2682013827525416,,1,Covariance
+44,disentangled_cov,halfcheetah-medium-v2,40,8.0,nonlinear,1.2344836103177266,,1,Covariance
+45,disentangled_cov,halfcheetah-medium-v2,80,0.5,nonlinear,38.79817258416909,,1,Covariance
+46,disentangled_cov,halfcheetah-medium-v2,80,1.0,nonlinear,29.60601520341154,,1,Covariance
+47,disentangled_cov,halfcheetah-medium-v2,80,2.0,nonlinear,5.403598567783757,,1,Covariance
+48,disentangled_cov,halfcheetah-medium-v2,80,4.0,nonlinear,1.9261901687839504,,1,Covariance
+49,disentangled_cov,halfcheetah-medium-v2,80,8.0,nonlinear,1.4663827844450417,,1,Covariance
+50,disentangled_dcor,halfcheetah-medium-v2,5,0.5,nonlinear,39.521255735753016,,1,dCor
+51,disentangled_dcor,halfcheetah-medium-v2,5,1.0,nonlinear,39.50438347890255,,1,dCor
+52,disentangled_dcor,halfcheetah-medium-v2,5,2.0,nonlinear,35.137866881860674,,1,dCor
+53,disentangled_dcor,halfcheetah-medium-v2,5,4.0,nonlinear,16.439668596098763,,1,dCor
+54,disentangled_dcor,halfcheetah-medium-v2,5,8.0,nonlinear,3.075569905229253,,1,dCor
+55,disentangled_dcor,halfcheetah-medium-v2,10,0.5,nonlinear,38.40553042289052,,1,dCor
+56,disentangled_dcor,halfcheetah-medium-v2,10,1.0,nonlinear,39.3797183146482,,1,dCor
+57,disentangled_dcor,halfcheetah-medium-v2,10,2.0,nonlinear,34.84423879894594,,1,dCor
+58,disentangled_dcor,halfcheetah-medium-v2,10,4.0,nonlinear,4.743514670251773,,1,dCor
+59,disentangled_dcor,halfcheetah-medium-v2,10,8.0,nonlinear,1.825962626668767,,1,dCor
+60,disentangled_dcor,halfcheetah-medium-v2,20,0.5,nonlinear,39.7964333258518,,1,dCor
+61,disentangled_dcor,halfcheetah-medium-v2,20,1.0,nonlinear,8.823983120144522,,1,dCor
+62,disentangled_dcor,halfcheetah-medium-v2,20,2.0,nonlinear,18.169385915278934,,1,dCor
+63,disentangled_dcor,halfcheetah-medium-v2,20,4.0,nonlinear,2.792876545611239,,1,dCor
+64,disentangled_dcor,halfcheetah-medium-v2,20,8.0,nonlinear,1.2179287428104186,,1,dCor
+65,disentangled_dcor,halfcheetah-medium-v2,40,0.5,nonlinear,38.653959693532585,,1,dCor
+66,disentangled_dcor,halfcheetah-medium-v2,40,1.0,nonlinear,34.78074542963239,,1,dCor
+67,disentangled_dcor,halfcheetah-medium-v2,40,2.0,nonlinear,8.765495280260799,,1,dCor
+68,disentangled_dcor,halfcheetah-medium-v2,40,4.0,nonlinear,1.8145238817150429,,1,dCor
+69,disentangled_dcor,halfcheetah-medium-v2,40,8.0,nonlinear,0.9859921982817478,,1,dCor
+70,disentangled_dcor,halfcheetah-medium-v2,80,0.5,nonlinear,38.67807063495778,,1,dCor
+71,disentangled_dcor,halfcheetah-medium-v2,80,1.0,nonlinear,25.86172184677672,,1,dCor
+72,disentangled_dcor,halfcheetah-medium-v2,80,2.0,nonlinear,5.35756080633015,,1,dCor
+73,disentangled_dcor,halfcheetah-medium-v2,80,4.0,nonlinear,2.061071003580234,,1,dCor
+74,disentangled_dcor,halfcheetah-medium-v2,80,8.0,nonlinear,1.1951366582312681,,1,dCor
+75,disentangled_hsic,halfcheetah-medium-v2,5,0.5,nonlinear,39.90045045354522,,1,HSIC
+76,disentangled_hsic,halfcheetah-medium-v2,5,1.0,nonlinear,39.6114193064278,,1,HSIC
+77,disentangled_hsic,halfcheetah-medium-v2,5,2.0,nonlinear,38.13725751686524,,1,HSIC
+78,disentangled_hsic,halfcheetah-medium-v2,5,4.0,nonlinear,16.41755272988612,,1,HSIC
+79,disentangled_hsic,halfcheetah-medium-v2,5,8.0,nonlinear,3.552000878179619,,1,HSIC
+80,disentangled_hsic,halfcheetah-medium-v2,10,0.5,nonlinear,38.68311564903678,,1,HSIC
+81,disentangled_hsic,halfcheetah-medium-v2,10,1.0,nonlinear,37.82421899348876,,1,HSIC
+82,disentangled_hsic,halfcheetah-medium-v2,10,2.0,nonlinear,33.36975077171902,,1,HSIC
+83,disentangled_hsic,halfcheetah-medium-v2,10,4.0,nonlinear,4.990020618112008,,1,HSIC
+84,disentangled_hsic,halfcheetah-medium-v2,10,8.0,nonlinear,1.8890358078039915,,1,HSIC
+85,disentangled_hsic,halfcheetah-medium-v2,20,0.5,nonlinear,40.65343527576386,,1,HSIC
+86,disentangled_hsic,halfcheetah-medium-v2,20,1.0,nonlinear,7.737696601230058,,1,HSIC
+87,disentangled_hsic,halfcheetah-medium-v2,20,2.0,nonlinear,17.212775728586713,,1,HSIC
+88,disentangled_hsic,halfcheetah-medium-v2,20,4.0,nonlinear,3.4232320549486652,,1,HSIC
+89,disentangled_hsic,halfcheetah-medium-v2,20,8.0,nonlinear,1.2167520664460145,,1,HSIC
+90,disentangled_hsic,halfcheetah-medium-v2,40,0.5,nonlinear,36.44997281179398,,1,HSIC
+91,disentangled_hsic,halfcheetah-medium-v2,40,1.0,nonlinear,29.832001438656874,,1,HSIC
+92,disentangled_hsic,halfcheetah-medium-v2,40,2.0,nonlinear,8.419290942876641,,1,HSIC
+93,disentangled_hsic,halfcheetah-medium-v2,40,4.0,nonlinear,2.5841761286540166,,1,HSIC
+94,disentangled_hsic,halfcheetah-medium-v2,40,8.0,nonlinear,1.7512410854097653,,1,HSIC
+95,disentangled_hsic,halfcheetah-medium-v2,80,0.5,nonlinear,39.199064261397254,,1,HSIC
+96,disentangled_hsic,halfcheetah-medium-v2,80,1.0,nonlinear,25.54359343681596,,1,HSIC
+97,disentangled_hsic,halfcheetah-medium-v2,80,2.0,nonlinear,6.021476623387532,,1,HSIC
+98,disentangled_hsic,halfcheetah-medium-v2,80,4.0,nonlinear,1.9302856888145659,,1,HSIC
+99,disentangled_hsic,halfcheetah-medium-v2,80,8.0,nonlinear,1.2099292410078792,,1,HSIC
+100,disentangled_infonce,halfcheetah-medium-v2,5,0.5,nonlinear,39.18319606239643,,1,InfoNCE
+101,disentangled_infonce,halfcheetah-medium-v2,5,1.0,nonlinear,37.91496985901175,,1,InfoNCE
+102,disentangled_infonce,halfcheetah-medium-v2,5,2.0,nonlinear,33.664109707438016,,1,InfoNCE
+103,disentangled_infonce,halfcheetah-medium-v2,5,4.0,nonlinear,15.362983676277326,,1,InfoNCE
+104,disentangled_infonce,halfcheetah-medium-v2,5,8.0,nonlinear,3.8674462470757955,,1,InfoNCE
+105,disentangled_infonce,halfcheetah-medium-v2,10,0.5,nonlinear,36.581939913904684,,1,InfoNCE
+106,disentangled_infonce,halfcheetah-medium-v2,10,1.0,nonlinear,37.832888688770616,,1,InfoNCE
+107,disentangled_infonce,halfcheetah-medium-v2,10,2.0,nonlinear,30.429698392304356,,1,InfoNCE
+108,disentangled_infonce,halfcheetah-medium-v2,10,4.0,nonlinear,4.310636962781402,,1,InfoNCE
+109,disentangled_infonce,halfcheetah-medium-v2,10,8.0,nonlinear,1.5914571786721416,,1,InfoNCE
+110,disentangled_infonce,halfcheetah-medium-v2,20,0.5,nonlinear,39.59096415577077,,1,InfoNCE
+111,disentangled_infonce,halfcheetah-medium-v2,20,1.0,nonlinear,5.776965006635989,,1,InfoNCE
+112,disentangled_infonce,halfcheetah-medium-v2,20,2.0,nonlinear,10.456550629907897,,1,InfoNCE
+113,disentangled_infonce,halfcheetah-medium-v2,20,4.0,nonlinear,2.4502348065371518,,1,InfoNCE
+114,disentangled_infonce,halfcheetah-medium-v2,20,8.0,nonlinear,1.6382093427769442,,1,InfoNCE
+115,disentangled_infonce,halfcheetah-medium-v2,40,0.5,nonlinear,38.60147349931775,,1,InfoNCE
+116,disentangled_infonce,halfcheetah-medium-v2,40,1.0,nonlinear,29.836316941672653,,1,InfoNCE
+117,disentangled_infonce,halfcheetah-medium-v2,40,2.0,nonlinear,6.7238703150771535,,1,InfoNCE
+118,disentangled_infonce,halfcheetah-medium-v2,40,4.0,nonlinear,2.2510280426150824,,1,InfoNCE
+119,disentangled_infonce,halfcheetah-medium-v2,40,8.0,nonlinear,0.923972944722995,,1,InfoNCE
+120,disentangled_infonce,halfcheetah-medium-v2,80,0.5,nonlinear,37.048520176242015,,1,InfoNCE
+121,disentangled_infonce,halfcheetah-medium-v2,80,1.0,nonlinear,27.234649774283763,,1,InfoNCE
+122,disentangled_infonce,halfcheetah-medium-v2,80,2.0,nonlinear,5.017942294798954,,1,InfoNCE
+123,disentangled_infonce,halfcheetah-medium-v2,80,4.0,nonlinear,2.1407647213784364,,1,InfoNCE
+124,disentangled_infonce,halfcheetah-medium-v2,80,8.0,nonlinear,1.17473879742729,,1,InfoNCE
+125,disentangled_l1,halfcheetah-medium-v2,5,0.5,nonlinear,38.50060067856709,,1,L1
+126,disentangled_l1,halfcheetah-medium-v2,5,1.0,nonlinear,37.685091507709046,,1,L1
+127,disentangled_l1,halfcheetah-medium-v2,5,2.0,nonlinear,31.192910090596744,,1,L1
+128,disentangled_l1,halfcheetah-medium-v2,5,4.0,nonlinear,13.998100223713832,,1,L1
+129,disentangled_l1,halfcheetah-medium-v2,5,8.0,nonlinear,3.518212236691873,,1,L1
+130,disentangled_l1,halfcheetah-medium-v2,10,0.5,nonlinear,38.01465604956385,,1,L1
+131,disentangled_l1,halfcheetah-medium-v2,10,1.0,nonlinear,37.99433053167961,,1,L1
+132,disentangled_l1,halfcheetah-medium-v2,10,2.0,nonlinear,27.482513345767845,,1,L1
+133,disentangled_l1,halfcheetah-medium-v2,10,4.0,nonlinear,6.328429866250571,,1,L1
+134,disentangled_l1,halfcheetah-medium-v2,10,8.0,nonlinear,1.9161378605741686,,1,L1
+135,disentangled_l1,halfcheetah-medium-v2,20,0.5,nonlinear,34.24763936600946,,1,L1
+136,disentangled_l1,halfcheetah-medium-v2,20,1.0,nonlinear,5.979871280122448,,1,L1
+137,disentangled_l1,halfcheetah-medium-v2,20,2.0,nonlinear,13.385289081990301,,1,L1
+138,disentangled_l1,halfcheetah-medium-v2,20,4.0,nonlinear,2.7406449962448347,,1,L1
+139,disentangled_l1,halfcheetah-medium-v2,20,8.0,nonlinear,1.1904235776479886,,1,L1
+140,disentangled_l1,halfcheetah-medium-v2,40,0.5,nonlinear,35.291082100305324,,1,L1
+141,disentangled_l1,halfcheetah-medium-v2,40,1.0,nonlinear,7.712407457746577,,1,L1
+142,disentangled_l1,halfcheetah-medium-v2,40,2.0,nonlinear,4.547584832876596,,1,L1
+143,disentangled_l1,halfcheetah-medium-v2,40,4.0,nonlinear,1.6277382206723905,,1,L1
+144,disentangled_l1,halfcheetah-medium-v2,40,8.0,nonlinear,1.061198968022702,,1,L1
+145,disentangled_l1,halfcheetah-medium-v2,80,0.5,nonlinear,33.03029879389028,,1,L1
+146,disentangled_l1,halfcheetah-medium-v2,80,1.0,nonlinear,8.677816728035651,,1,L1
+147,disentangled_l1,halfcheetah-medium-v2,80,2.0,nonlinear,1.819607055148555,,1,L1
+148,disentangled_l1,halfcheetah-medium-v2,80,4.0,nonlinear,1.8808075616731126,,1,L1
+149,disentangled_l1,halfcheetah-medium-v2,80,8.0,nonlinear,0.9380052562085484,,1,L1
+150,plain,halfcheetah-medium-v2,5,0.5,nonlinear,37.45435509994923,,1,Plain Encoder
+151,plain,halfcheetah-medium-v2,5,1.0,nonlinear,36.934792039732436,,1,Plain Encoder
+152,plain,halfcheetah-medium-v2,5,2.0,nonlinear,33.63057497179797,,1,Plain Encoder
+153,plain,halfcheetah-medium-v2,5,4.0,nonlinear,9.213823179320643,,1,Plain Encoder
+154,plain,halfcheetah-medium-v2,5,8.0,nonlinear,3.0845125163904195,,1,Plain Encoder
+155,plain,halfcheetah-medium-v2,10,0.5,nonlinear,37.988878756219314,,1,Plain Encoder
+156,plain,halfcheetah-medium-v2,10,1.0,nonlinear,36.40743171697496,,1,Plain Encoder
+157,plain,halfcheetah-medium-v2,10,2.0,nonlinear,26.489399430796333,,1,Plain Encoder
+158,plain,halfcheetah-medium-v2,10,4.0,nonlinear,4.451730582468991,,1,Plain Encoder
+159,plain,halfcheetah-medium-v2,10,8.0,nonlinear,1.4940667028766907,,1,Plain Encoder
+160,plain,halfcheetah-medium-v2,20,0.5,nonlinear,37.134052584872435,,1,Plain Encoder
+161,plain,halfcheetah-medium-v2,20,1.0,nonlinear,9.079563352436825,,1,Plain Encoder
+162,plain,halfcheetah-medium-v2,20,2.0,nonlinear,12.415053525655612,,1,Plain Encoder
+163,plain,halfcheetah-medium-v2,20,4.0,nonlinear,2.755391340897284,,1,Plain Encoder
+164,plain,halfcheetah-medium-v2,20,8.0,nonlinear,1.521471427558518,,1,Plain Encoder
+165,plain,halfcheetah-medium-v2,40,0.5,nonlinear,35.77515641541494,,1,Plain Encoder
+166,plain,halfcheetah-medium-v2,40,1.0,nonlinear,31.274045179178856,,1,Plain Encoder
+167,plain,halfcheetah-medium-v2,40,2.0,nonlinear,7.5844340542216155,,1,Plain Encoder
+168,plain,halfcheetah-medium-v2,40,4.0,nonlinear,2.66491694499456,,1,Plain Encoder
+169,plain,halfcheetah-medium-v2,40,8.0,nonlinear,1.3536193427647918,,1,Plain Encoder
+170,plain,halfcheetah-medium-v2,80,0.5,nonlinear,38.71697863213275,,1,Plain Encoder
+171,plain,halfcheetah-medium-v2,80,1.0,nonlinear,28.743296371317374,,1,Plain Encoder
+172,plain,halfcheetah-medium-v2,80,2.0,nonlinear,5.698527250906303,,1,Plain Encoder
+173,plain,halfcheetah-medium-v2,80,4.0,nonlinear,2.6365621287343752,,1,Plain Encoder
+174,plain,halfcheetah-medium-v2,80,8.0,nonlinear,1.2655034128778775,,1,Plain Encoder
+175,raw_noisy,halfcheetah-medium-v2,5,0.5,nonlinear,33.39876084011072,,1,Raw Noisy
+176,raw_noisy,halfcheetah-medium-v2,5,1.0,nonlinear,34.50417960348374,,1,Raw Noisy
+177,raw_noisy,halfcheetah-medium-v2,5,2.0,nonlinear,29.186444010099343,,1,Raw Noisy
+178,raw_noisy,halfcheetah-medium-v2,5,4.0,nonlinear,17.02835742151318,,1,Raw Noisy
+179,raw_noisy,halfcheetah-medium-v2,5,8.0,nonlinear,4.4566229048699295,,1,Raw Noisy
+180,raw_noisy,halfcheetah-medium-v2,10,0.5,nonlinear,37.3162868946743,,1,Raw Noisy
+181,raw_noisy,halfcheetah-medium-v2,10,1.0,nonlinear,35.22846257042489,,1,Raw Noisy
+182,raw_noisy,halfcheetah-medium-v2,10,2.0,nonlinear,25.405069634999407,,1,Raw Noisy
+183,raw_noisy,halfcheetah-medium-v2,10,4.0,nonlinear,5.872038617405075,,1,Raw Noisy
+184,raw_noisy,halfcheetah-medium-v2,10,8.0,nonlinear,2.127246931744741,,1,Raw Noisy
+185,raw_noisy,halfcheetah-medium-v2,20,0.5,nonlinear,37.51830277075309,,1,Raw Noisy
+186,raw_noisy,halfcheetah-medium-v2,20,1.0,nonlinear,12.326568524563156,,1,Raw Noisy
+187,raw_noisy,halfcheetah-medium-v2,20,2.0,nonlinear,11.693040756232122,1.4466516454007972,2,Raw Noisy
+188,raw_noisy,halfcheetah-medium-v2,20,4.0,nonlinear,3.1015340956738706,,1,Raw Noisy
+189,raw_noisy,halfcheetah-medium-v2,20,8.0,nonlinear,1.5389629567260361,,1,Raw Noisy
+190,raw_noisy,halfcheetah-medium-v2,40,0.5,nonlinear,38.47961056236803,,1,Raw Noisy
+191,raw_noisy,halfcheetah-medium-v2,40,1.0,nonlinear,21.936483869966004,,1,Raw Noisy
+192,raw_noisy,halfcheetah-medium-v2,40,2.0,nonlinear,7.0667483865890866,,1,Raw Noisy
+193,raw_noisy,halfcheetah-medium-v2,40,4.0,nonlinear,2.466918824548934,,1,Raw Noisy
+194,raw_noisy,halfcheetah-medium-v2,40,8.0,nonlinear,1.4551141639591583,,1,Raw Noisy
+195,raw_noisy,halfcheetah-medium-v2,80,0.5,nonlinear,36.29250328176526,,1,Raw Noisy
+196,raw_noisy,halfcheetah-medium-v2,80,1.0,nonlinear,23.799493834274816,,1,Raw Noisy
+197,raw_noisy,halfcheetah-medium-v2,80,2.0,nonlinear,6.8040279081626425,,1,Raw Noisy
+198,raw_noisy,halfcheetah-medium-v2,80,4.0,nonlinear,2.21416992869511,,1,Raw Noisy
+199,raw_noisy,halfcheetah-medium-v2,80,8.0,nonlinear,1.3901893750622554,,1,Raw Noisy

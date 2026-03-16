@@ -1,0 +1,11 @@
+{
+  "env": "halfcheetah-medium-v2",
+  "method": "disentangled_cov",
+  "seed": 2,
+  "noise_dim": 40,
+  "noise_scale": 1.0,
+  "noise_type": "nonlinear",
+  "avg_return": 3459.7523447414787,
+  "std_return": 1038.073148156681,
+  "normalized_score": 30.12386137887898
+}

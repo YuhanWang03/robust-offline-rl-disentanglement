@@ -1,0 +1,24 @@
+{
+  "env": "halfcheetah-medium-v2",
+  "method": "disentangled_l1",
+  "seed": 1,
+  "noise_dim": 20,
+  "noise_scale": 1.0,
+  "noise_type": "nonlinear",
+  "avg_return": 462.2327675862539,
+  "std_return": 320.7146103858876,
+  "normalized_score": 5.979871280122448,
+  "latent_dim": 30,
+  "pretrain_epochs": 1,
+  "iql_epochs": 1,
+  "encoder_checkpoint": "/mnt/d/CSE5100-Deep Reinforcement Learning/robust-offline-rl-disentanglement/artifacts/checkpoints/disentangled_l1/halfcheetah-medium-v2/nd20_ns1p0_nonlinear/seed_1/encoder_epoch_1.pth",
+  "obs_stats_path": "/mnt/d/CSE5100-Deep Reinforcement Learning/robust-offline-rl-disentanglement/artifacts/obs_stats/disentangled_l1/halfcheetah-medium-v2/nd20_ns1p0_nonlinear/seed_1/obs_stats.npz",
+  "iql_history": [
+    {
+      "epoch": 1,
+      "value_loss": 0.028088098902049528,
+      "q_loss": 8.069710175440486,
+      "actor_loss": 0.965462142519588
+    }
+  ]
+}
