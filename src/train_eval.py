@@ -1,10 +1,6 @@
 """
 Minimal training and evaluation utilities used directly by the experiment notebooks.
 
-This version keeps the notebook workflow readable while moving repetitive logic out of
-individual notebooks. It intentionally removes unused abstractions from the older
-train_eval.py and only retains helpers that are actually useful in the current project.
-
 Provided utilities:
 - load_and_freeze_encoder: load a saved encoder checkpoint and freeze it
 - train_iql_from_loader: train IQL from a notebook-managed DataLoader

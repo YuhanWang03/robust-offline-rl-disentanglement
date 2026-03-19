@@ -1,0 +1,99 @@
+index,Method,Env,Dim,Scale,Type,mean,std,count,Method Name
+0,disentangled_barlow,halfcheetah-medium-v2,10,1.0,project,40.41766148886704,,1,Barlow
+1,disentangled_barlow,halfcheetah-medium-v2,10,2.0,project,40.12291397982424,,1,Barlow
+2,disentangled_barlow,halfcheetah-medium-v2,10,4.0,project,40.038003311293316,,1,Barlow
+3,disentangled_barlow,halfcheetah-medium-v2,20,1.0,project,40.27946711078551,,1,Barlow
+4,disentangled_barlow,halfcheetah-medium-v2,20,2.0,project,38.90066185904422,,1,Barlow
+5,disentangled_barlow,halfcheetah-medium-v2,20,4.0,project,40.73645876666113,,1,Barlow
+6,disentangled_barlow,halfcheetah-medium-v2,40,1.0,project,40.59957531535058,,1,Barlow
+7,disentangled_barlow,halfcheetah-medium-v2,40,2.0,project,40.74868923727708,,1,Barlow
+8,disentangled_barlow,halfcheetah-medium-v2,40,4.0,project,40.18624190537608,,1,Barlow
+9,disentangled_barlow,halfcheetah-medium-v2,80,1.0,project,41.268788073003925,,1,Barlow
+10,disentangled_barlow,halfcheetah-medium-v2,80,2.0,project,40.56221924748704,,1,Barlow
+11,disentangled_barlow,halfcheetah-medium-v2,80,4.0,project,39.0643593102807,,1,Barlow
+12,disentangled_cov,halfcheetah-medium-v2,10,1.0,project,40.82273988493411,,1,Covariance
+13,disentangled_cov,halfcheetah-medium-v2,10,2.0,project,40.39132326064889,,1,Covariance
+14,disentangled_cov,halfcheetah-medium-v2,10,4.0,project,40.69203044087982,,1,Covariance
+15,disentangled_cov,halfcheetah-medium-v2,20,1.0,project,40.15905088659711,,1,Covariance
+16,disentangled_cov,halfcheetah-medium-v2,20,2.0,project,40.58850376719517,,1,Covariance
+17,disentangled_cov,halfcheetah-medium-v2,20,4.0,project,39.54577506426145,,1,Covariance
+18,disentangled_cov,halfcheetah-medium-v2,40,1.0,project,40.755029701503425,,1,Covariance
+19,disentangled_cov,halfcheetah-medium-v2,40,2.0,project,40.42381392461058,,1,Covariance
+20,disentangled_cov,halfcheetah-medium-v2,40,4.0,project,36.18346321928506,,1,Covariance
+21,disentangled_cov,halfcheetah-medium-v2,80,1.0,project,40.590741076302756,,1,Covariance
+22,disentangled_cov,halfcheetah-medium-v2,80,2.0,project,40.39897088826152,,1,Covariance
+23,disentangled_cov,halfcheetah-medium-v2,80,4.0,project,39.876419790982986,,1,Covariance
+24,disentangled_dcor,halfcheetah-medium-v2,10,1.0,project,40.17369461558109,,1,dCor
+25,disentangled_dcor,halfcheetah-medium-v2,10,2.0,project,39.55106284459642,,1,dCor
+26,disentangled_dcor,halfcheetah-medium-v2,10,4.0,project,40.966046727200464,,1,dCor
+27,disentangled_dcor,halfcheetah-medium-v2,20,1.0,project,40.15591716272586,,1,dCor
+28,disentangled_dcor,halfcheetah-medium-v2,20,2.0,project,40.44436514504138,,1,dCor
+29,disentangled_dcor,halfcheetah-medium-v2,20,4.0,project,40.37280194754718,,1,dCor
+30,disentangled_dcor,halfcheetah-medium-v2,40,1.0,project,39.85614184622291,,1,dCor
+31,disentangled_dcor,halfcheetah-medium-v2,40,2.0,project,39.68164961689015,,1,dCor
+32,disentangled_dcor,halfcheetah-medium-v2,40,4.0,project,40.57657511167426,,1,dCor
+33,disentangled_dcor,halfcheetah-medium-v2,80,1.0,project,40.06272766980019,,1,dCor
+34,disentangled_dcor,halfcheetah-medium-v2,80,2.0,project,41.02050811072986,,1,dCor
+35,disentangled_dcor,halfcheetah-medium-v2,80,4.0,project,40.3497485226936,,1,dCor
+36,disentangled_hsic,halfcheetah-medium-v2,10,1.0,project,39.18024028202621,,1,HSIC
+37,disentangled_hsic,halfcheetah-medium-v2,10,2.0,project,40.337742512033884,,1,HSIC
+38,disentangled_hsic,halfcheetah-medium-v2,10,4.0,project,40.75726089143548,,1,HSIC
+39,disentangled_hsic,halfcheetah-medium-v2,20,1.0,project,40.53037416650589,,1,HSIC
+40,disentangled_hsic,halfcheetah-medium-v2,20,2.0,project,37.95973632318165,,1,HSIC
+41,disentangled_hsic,halfcheetah-medium-v2,20,4.0,project,40.55970326821021,,1,HSIC
+42,disentangled_hsic,halfcheetah-medium-v2,40,1.0,project,39.40379933863966,,1,HSIC
+43,disentangled_hsic,halfcheetah-medium-v2,40,2.0,project,40.40286144502826,,1,HSIC
+44,disentangled_hsic,halfcheetah-medium-v2,40,4.0,project,40.63960140729998,,1,HSIC
+45,disentangled_hsic,halfcheetah-medium-v2,80,1.0,project,40.03835794448819,,1,HSIC
+46,disentangled_hsic,halfcheetah-medium-v2,80,2.0,project,40.6292373052951,,1,HSIC
+47,disentangled_hsic,halfcheetah-medium-v2,80,4.0,project,40.10098524035986,,1,HSIC
+48,disentangled_infonce,halfcheetah-medium-v2,10,1.0,project,39.77743120018943,,1,InfoNCE
+49,disentangled_infonce,halfcheetah-medium-v2,10,2.0,project,40.053851544937736,,1,InfoNCE
+50,disentangled_infonce,halfcheetah-medium-v2,10,4.0,project,40.506417143128914,,1,InfoNCE
+51,disentangled_infonce,halfcheetah-medium-v2,20,1.0,project,40.53283543609607,,1,InfoNCE
+52,disentangled_infonce,halfcheetah-medium-v2,20,2.0,project,40.704614733309604,,1,InfoNCE
+53,disentangled_infonce,halfcheetah-medium-v2,20,4.0,project,40.20734954108083,,1,InfoNCE
+54,disentangled_infonce,halfcheetah-medium-v2,40,1.0,project,39.468115959133534,,1,InfoNCE
+55,disentangled_infonce,halfcheetah-medium-v2,40,2.0,project,40.91378559951609,,1,InfoNCE
+56,disentangled_infonce,halfcheetah-medium-v2,40,4.0,project,38.24646811420097,,1,InfoNCE
+57,disentangled_infonce,halfcheetah-medium-v2,80,1.0,project,40.013171689312,,1,InfoNCE
+58,disentangled_infonce,halfcheetah-medium-v2,80,2.0,project,40.681498519178106,,1,InfoNCE
+59,disentangled_infonce,halfcheetah-medium-v2,80,4.0,project,40.53224320351113,,1,InfoNCE
+60,disentangled_l1,halfcheetah-medium-v2,10,1.0,project,39.89531710506325,,1,L1
+61,disentangled_l1,halfcheetah-medium-v2,10,2.0,project,36.54477302637027,,1,L1
+62,disentangled_l1,halfcheetah-medium-v2,10,4.0,project,40.14656061446906,,1,L1
+63,disentangled_l1,halfcheetah-medium-v2,20,1.0,project,40.57514176895295,,1,L1
+64,disentangled_l1,halfcheetah-medium-v2,20,2.0,project,40.342996684701305,,1,L1
+65,disentangled_l1,halfcheetah-medium-v2,20,4.0,project,35.43470836070159,,1,L1
+66,disentangled_l1,halfcheetah-medium-v2,40,1.0,project,37.985577555148076,,1,L1
+67,disentangled_l1,halfcheetah-medium-v2,40,2.0,project,34.76009674001324,,1,L1
+68,disentangled_l1,halfcheetah-medium-v2,40,4.0,project,32.20288722528595,,1,L1
+69,disentangled_l1,halfcheetah-medium-v2,80,1.0,project,37.85024289705491,,1,L1
+70,disentangled_l1,halfcheetah-medium-v2,80,2.0,project,19.418241502545413,,1,L1
+71,disentangled_l1,halfcheetah-medium-v2,80,4.0,project,25.28461934604957,,1,L1
+72,plain,halfcheetah-medium-v2,10,1.0,project,40.268800065256684,,1,Plain Encoder
+73,plain,halfcheetah-medium-v2,10,2.0,project,40.61445740681218,,1,Plain Encoder
+74,plain,halfcheetah-medium-v2,10,4.0,project,39.23436410925032,,1,Plain Encoder
+75,plain,halfcheetah-medium-v2,20,1.0,project,40.79382561628896,,1,Plain Encoder
+76,plain,halfcheetah-medium-v2,20,2.0,project,40.9128964904818,,1,Plain Encoder
+77,plain,halfcheetah-medium-v2,20,4.0,project,39.69937708410172,,1,Plain Encoder
+78,plain,halfcheetah-medium-v2,40,1.0,project,40.52227302057946,,1,Plain Encoder
+79,plain,halfcheetah-medium-v2,40,2.0,project,39.53711288929244,,1,Plain Encoder
+80,plain,halfcheetah-medium-v2,40,4.0,project,40.48814002598412,,1,Plain Encoder
+81,plain,halfcheetah-medium-v2,40,8.0,project,2.3813114117664003,,1,Plain Encoder
+82,plain,halfcheetah-medium-v2,80,1.0,project,41.62092893465334,,1,Plain Encoder
+83,plain,halfcheetah-medium-v2,80,2.0,project,40.562029127999025,,1,Plain Encoder
+84,plain,halfcheetah-medium-v2,80,4.0,project,40.80161329769651,,1,Plain Encoder
+85,raw_noisy,halfcheetah-medium-v2,10,1.0,project,38.729672327540484,,1,Raw Noisy
+86,raw_noisy,halfcheetah-medium-v2,10,2.0,project,39.51841946035717,,1,Raw Noisy
+87,raw_noisy,halfcheetah-medium-v2,10,4.0,project,40.83664670756645,,1,Raw Noisy
+88,raw_noisy,halfcheetah-medium-v2,20,1.0,project,40.190905084626735,,1,Raw Noisy
+89,raw_noisy,halfcheetah-medium-v2,20,2.0,project,38.90813100732194,,1,Raw Noisy
+90,raw_noisy,halfcheetah-medium-v2,20,4.0,project,40.60960517901959,,1,Raw Noisy
+91,raw_noisy,halfcheetah-medium-v2,40,1.0,project,39.16601280908064,,1,Raw Noisy
+92,raw_noisy,halfcheetah-medium-v2,40,2.0,project,39.462419129307555,,1,Raw Noisy
+93,raw_noisy,halfcheetah-medium-v2,40,4.0,project,39.857095011152175,,1,Raw Noisy
+94,raw_noisy,halfcheetah-medium-v2,40,8.0,project,40.27704009647258,,1,Raw Noisy
+95,raw_noisy,halfcheetah-medium-v2,80,1.0,project,38.474778662914304,,1,Raw Noisy
+96,raw_noisy,halfcheetah-medium-v2,80,2.0,project,39.41369839382612,,1,Raw Noisy
+97,raw_noisy,halfcheetah-medium-v2,80,4.0,project,39.853957105058825,,1,Raw Noisy

@@ -18,8 +18,7 @@ def set_seed(seed: int) -> None:
     """
     Set random seeds for Python, NumPy, and PyTorch.
 
-    This function also enables deterministic CuDNN behavior for improved
-    reproducibility.
+    This function also enables deterministic CuDNN behavior for improved reproducibility.
     """
     seed = int(seed)
     random.seed(seed)

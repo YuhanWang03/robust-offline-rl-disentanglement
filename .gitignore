@@ -15,3 +15,4 @@ artifacts/slurm_jobs/
 
 .DS_Store
 Thumbs.db
+migrate_project_layout_results_only.py
