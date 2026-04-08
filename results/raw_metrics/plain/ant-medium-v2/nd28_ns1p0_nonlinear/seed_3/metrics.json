@@ -1,0 +1,14 @@
+{
+  "env": "ant-medium-v2",
+  "method": "plain",
+  "seed": 3,
+  "noise_dim": 28,
+  "noise_scale": 1.0,
+  "noise_type": "nonlinear",
+  "avg_return": 2540.6651345968585,
+  "std_return": 1293.503518408157,
+  "normalized_score": 68.1583985588866,
+  "latent_dim": 166,
+  "pretrain_epochs": 50,
+  "iql_epochs": 100
+}

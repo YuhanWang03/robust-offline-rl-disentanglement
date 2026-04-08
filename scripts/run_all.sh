@@ -22,24 +22,16 @@ KERNEL="${KERNEL:-rl_env}"
 # and the updated notebooks.
 export ENV_NAME="${ENV_NAME:-halfcheetah-medium-v2}"
 export SEED="${SEED:-1}"
-export NOISE_DIM="${NOISE_DIM:-20}"
-export NOISE_SCALE="${NOISE_SCALE:-1.0}"
+export NOISE_DIM="${NOISE_DIM:-17}"
+export NOISE_SCALE="${NOISE_SCALE:-2.0}"
 export NOISE_TYPE="${NOISE_TYPE:-nonlinear}"
 
 # Select notebooks for local execution.
 # Use notebook filenames as they appear under notebooks/.
-# For true_only, only ENV_NAME and SEED matter.
 NOTEBOOKS=(
-  # "exp_true_only.ipynb"
-  # "exp_raw_noisy.ipynb"
-  # "exp_plain_encoder.ipynb"
-  # "exp_disentangled_cov.ipynb"
-  # "exp_disentangled_barlow.ipynb"
-  "exp_disentangled_hsic.ipynb"
-  "exp_disentangled_infonce.ipynb"
-  "exp_disentangled_dcor.ipynb"
-  "exp_disentangled_l1.ipynb"
-  # "eval_all.ipynb"
+  "exp_plain_encoder_no_priv.ipynb"
+  "exp_disentangled_barlow_no_priv.ipynb"
+  "exp_disentangled_hsic_no_priv.ipynb"
 )
 
 # ------------------------------------------------------------

@@ -1,0 +1,4 @@
+Method,With Privilege,No Privilege,Gap (priv - no_priv)
+Plain,25.18,11.36,13.83
+Barlow,28.01,13.71,14.3
+HSIC,28.62,13.41,15.22

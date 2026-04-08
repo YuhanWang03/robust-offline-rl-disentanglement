@@ -13,8 +13,8 @@ SEED = int(os.environ.get("SEED", 11))
 
 # Training hyperparameters
 BATCH_SIZE = int(os.environ.get("BATCH_SIZE", 256))
-EPOCHS = int(os.environ.get("EPOCHS", 1))
-PRETRAIN_EPOCHS = int(os.environ.get("PRETRAIN_EPOCHS", 1))
+EPOCHS = int(os.environ.get("EPOCHS", 100))
+PRETRAIN_EPOCHS = int(os.environ.get("PRETRAIN_EPOCHS", 50))
 PRETRAIN_BS = int(os.environ.get("PRETRAIN_BS", 512))
 
 # Device

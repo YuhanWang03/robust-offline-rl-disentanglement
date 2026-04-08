@@ -1,2 +1,5 @@
 Method,Env,Seed,Score,Layout,Source
-true_only,halfcheetah-medium-v2,1,40.724105566295485,new,/home/wyuhan/projects/robust-offline-rl-disentanglement/results/raw_metrics/true_only/halfcheetah-medium-v2/seed_1/metrics.json
+true_only,halfcheetah-medium-v2,1,39.98407050285934,new,/home/wyuhan/projects/robust-offline-rl-disentanglement/results/raw_metrics/true_only/halfcheetah-medium-v2/seed_1/metrics.json
+true_only,halfcheetah-medium-v2,2,40.16013124136603,new,/home/wyuhan/projects/robust-offline-rl-disentanglement/results/raw_metrics/true_only/halfcheetah-medium-v2/seed_2/metrics.json
+true_only,halfcheetah-medium-v2,3,40.69190017246892,new,/home/wyuhan/projects/robust-offline-rl-disentanglement/results/raw_metrics/true_only/halfcheetah-medium-v2/seed_3/metrics.json
+true_only,halfcheetah-medium-v2,4,40.03611196272044,new,/home/wyuhan/projects/robust-offline-rl-disentanglement/results/raw_metrics/true_only/halfcheetah-medium-v2/seed_4/metrics.json

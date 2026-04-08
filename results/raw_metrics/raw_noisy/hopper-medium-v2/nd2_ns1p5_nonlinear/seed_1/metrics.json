@@ -1,0 +1,11 @@
+{
+  "env": "hopper-medium-v2",
+  "method": "raw_noisy",
+  "seed": 1,
+  "noise_dim": 2,
+  "noise_scale": 1.5,
+  "noise_type": "nonlinear",
+  "avg_return": 1364.2622677817728,
+  "std_return": 224.62972873773913,
+  "normalized_score": 42.541214114515505
+}

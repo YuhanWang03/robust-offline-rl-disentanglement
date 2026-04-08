@@ -1,0 +1,16 @@
+Method,Dim,Scale,mean,std,count,Method Name,Privilege
+disentangled_barlow,13,1.5,32.98615044114451,,1,Barlow (priv),priv
+disentangled_barlow,13,2.0,25.338130839614426,,1,Barlow (priv),priv
+disentangled_barlow,17,1.5,31.326771990542145,,1,Barlow (priv),priv
+disentangled_barlow,17,2.0,22.396312815237106,,1,Barlow (priv),priv
+disentangled_barlow_no_priv,17,2.0,13.707908224157112,,1,Barlow (no-priv),no-priv
+disentangled_hsic,13,1.5,31.481372447911742,,1,HSIC (priv),priv
+disentangled_hsic,13,2.0,26.922867287791963,,1,HSIC (priv),priv
+disentangled_hsic,17,1.5,34.04184259755789,,1,HSIC (priv),priv
+disentangled_hsic,17,2.0,22.043365054801708,,1,HSIC (priv),priv
+disentangled_hsic_no_priv,17,2.0,13.406271481415516,,1,HSIC (no-priv),no-priv
+plain,13,1.5,32.722581484312634,,1,Plain (priv),priv
+plain,13,2.0,19.69347634800965,,1,Plain (priv),priv
+plain,17,1.5,32.01782934391751,,1,Plain (priv),priv
+plain,17,2.0,16.29928301021423,,1,Plain (priv),priv
+plain_no_priv,17,2.0,11.3550879289188,,1,Plain (no-priv),no-priv

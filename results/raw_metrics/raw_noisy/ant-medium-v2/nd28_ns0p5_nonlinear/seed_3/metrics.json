@@ -1,0 +1,11 @@
+{
+  "env": "ant-medium-v2",
+  "method": "raw_noisy",
+  "seed": 3,
+  "noise_dim": 28,
+  "noise_scale": 0.5,
+  "noise_type": "nonlinear",
+  "avg_return": 2992.9795748761967,
+  "std_return": 1317.0581389970043,
+  "normalized_score": 78.91421717537861
+}

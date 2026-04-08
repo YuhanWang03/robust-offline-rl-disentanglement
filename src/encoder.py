@@ -37,8 +37,14 @@ class DisentangledEncoder(nn.Module):
         reward_predictor: predicts scalar reward from z_task
     """
 
-    def __init__(self, state_dim, action_dim, true_state_dim, latent_dim):
+    def __init__(self, state_dim, action_dim, true_state_dim, latent_dim, aux_target_dim=None):
         super().__init__()
+
+        # aux_target_dim controls the output size of state_predictor.
+        # Defaults to true_state_dim (privileged clean state).
+        # Pass aux_target_dim=state_dim for the no-privilege ablation,
+        # where the target is the noisy next observation instead.
+        _aux_target_dim = aux_target_dim if aux_target_dim is not None else true_state_dim
 
         # Scale encoder width with input dimensionality.
         hidden_dim = int(max(256, state_dim * 4))
@@ -81,7 +87,8 @@ class DisentangledEncoder(nn.Module):
         # Scale auxiliary predictor width with latent dimensionality.
         pred_hidden = int(max(256, latent_dim * 4))
 
-        # Predict the next clean state from task representation and action.
+        # Predict the next state from task representation and action.
+        # Output dimension is _aux_target_dim: true_state_dim (default) or state_dim (no-priv).
         self.state_predictor = nn.Sequential(
             nn.Linear(latent_dim + action_dim, pred_hidden),
             nn.LayerNorm(pred_hidden),
@@ -91,7 +98,7 @@ class DisentangledEncoder(nn.Module):
             nn.LayerNorm(pred_hidden),
             nn.ReLU(),
 
-            nn.Linear(pred_hidden, true_state_dim),
+            nn.Linear(pred_hidden, _aux_target_dim),
         )
 
         # Predict scalar reward from the task representation.
@@ -135,8 +142,14 @@ class PlainEncoder(nn.Module):
         reward_predictor: predicts scalar reward from z
     """
 
-    def __init__(self, state_dim, action_dim, true_state_dim, latent_dim):
+    def __init__(self, state_dim, action_dim, true_state_dim, latent_dim, aux_target_dim=None):
         super().__init__()
+
+        # aux_target_dim controls the output size of state_predictor.
+        # Defaults to true_state_dim (privileged clean state).
+        # Pass aux_target_dim=state_dim for the no-privilege ablation,
+        # where the target is the noisy next observation instead.
+        _aux_target_dim = aux_target_dim if aux_target_dim is not None else true_state_dim
 
         # Use the same width scaling rule as the disentangled encoder.
         hidden_dim = int(max(256, state_dim * 4))
@@ -162,7 +175,8 @@ class PlainEncoder(nn.Module):
         # Use the same auxiliary predictor width as the disentangled encoder.
         pred_hidden = int(max(256, latent_dim * 4))
 
-        # Predict the next clean state from latent representation and action.
+        # Predict the next state from latent representation and action.
+        # Output dimension is _aux_target_dim: true_state_dim (default) or state_dim (no-priv).
         self.state_predictor = nn.Sequential(
             nn.Linear(latent_dim + action_dim, pred_hidden),
             nn.LayerNorm(pred_hidden),
@@ -172,7 +186,7 @@ class PlainEncoder(nn.Module):
             nn.LayerNorm(pred_hidden),
             nn.ReLU(),
 
-            nn.Linear(pred_hidden, true_state_dim),
+            nn.Linear(pred_hidden, _aux_target_dim),
         )
 
         # Predict scalar reward from the latent representation.

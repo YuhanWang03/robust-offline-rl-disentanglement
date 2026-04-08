@@ -1,0 +1,65 @@
+index,Method,Env,Dim,Scale,Type,mean,std,count,Method Name
+0,disentangled_barlow,ant-medium-v2,28,0.5,nonlinear,70.75940897893581,14.36885147471269,3,Barlow
+1,disentangled_barlow,ant-medium-v2,28,1.0,nonlinear,66.88768480497727,11.667601064434862,3,Barlow
+2,disentangled_barlow,ant-medium-v2,28,1.5,nonlinear,52.96042560675201,40.65347591367465,3,Barlow
+3,disentangled_barlow,ant-medium-v2,28,2.0,nonlinear,38.097353586830415,31.743648206656868,3,Barlow
+4,disentangled_barlow,ant-medium-v2,56,0.5,nonlinear,38.85457991971658,38.74563127717895,3,Barlow
+5,disentangled_barlow,ant-medium-v2,56,1.0,nonlinear,42.70790317306248,37.92777680947454,3,Barlow
+6,disentangled_barlow,ant-medium-v2,56,1.5,nonlinear,19.721600742997314,26.984939385954373,3,Barlow
+7,disentangled_barlow,ant-medium-v2,56,2.0,nonlinear,16.204619075653294,19.637121432074842,3,Barlow
+8,disentangled_barlow,ant-medium-v2,83,0.5,nonlinear,34.07068668358493,38.86918408751256,3,Barlow
+9,disentangled_barlow,ant-medium-v2,83,1.0,nonlinear,5.479193081624916,0.8775801597774732,3,Barlow
+10,disentangled_barlow,ant-medium-v2,83,1.5,nonlinear,-2.9507830965516053,8.79144440796595,3,Barlow
+11,disentangled_barlow,ant-medium-v2,83,2.0,nonlinear,11.605451800643978,13.052759590556878,3,Barlow
+12,disentangled_barlow,ant-medium-v2,111,0.5,nonlinear,1.291385169999505,4.868855350007877,3,Barlow
+13,disentangled_barlow,ant-medium-v2,111,1.0,nonlinear,41.46904909498847,15.69542691371496,3,Barlow
+14,disentangled_barlow,ant-medium-v2,111,1.5,nonlinear,34.185717616667795,8.274531798021854,3,Barlow
+15,disentangled_barlow,ant-medium-v2,111,2.0,nonlinear,17.20652932855843,2.1232211756992694,3,Barlow
+16,disentangled_hsic,ant-medium-v2,28,0.5,nonlinear,82.45606818577336,7.902680451776322,3,HSIC
+17,disentangled_hsic,ant-medium-v2,28,1.0,nonlinear,77.34407363273148,4.216666806457708,3,HSIC
+18,disentangled_hsic,ant-medium-v2,28,1.5,nonlinear,61.23516491167381,13.431772707207498,3,HSIC
+19,disentangled_hsic,ant-medium-v2,28,2.0,nonlinear,62.969430993343714,9.84279479864391,3,HSIC
+20,disentangled_hsic,ant-medium-v2,56,0.5,nonlinear,75.63033312328433,4.941789704134157,3,HSIC
+21,disentangled_hsic,ant-medium-v2,56,1.0,nonlinear,70.45036602069077,8.96303863241451,3,HSIC
+22,disentangled_hsic,ant-medium-v2,56,1.5,nonlinear,57.242002822338655,3.0781814093212865,3,HSIC
+23,disentangled_hsic,ant-medium-v2,56,2.0,nonlinear,43.29110963809714,6.946165568248139,3,HSIC
+24,disentangled_hsic,ant-medium-v2,83,0.5,nonlinear,78.88515869666635,5.441367561713653,3,HSIC
+25,disentangled_hsic,ant-medium-v2,83,1.0,nonlinear,62.795213732800676,6.195741870135092,3,HSIC
+26,disentangled_hsic,ant-medium-v2,83,1.5,nonlinear,41.42512322871364,7.680790675123932,3,HSIC
+27,disentangled_hsic,ant-medium-v2,83,2.0,nonlinear,25.999746927568435,1.370476579894039,3,HSIC
+28,disentangled_hsic,ant-medium-v2,111,0.5,nonlinear,70.36715374591269,2.776997383868799,3,HSIC
+29,disentangled_hsic,ant-medium-v2,111,1.0,nonlinear,61.21372160467953,6.947603149815909,3,HSIC
+30,disentangled_hsic,ant-medium-v2,111,1.5,nonlinear,32.00598069571961,2.311693068324123,3,HSIC
+31,disentangled_hsic,ant-medium-v2,111,2.0,nonlinear,27.228409262344456,5.002101854454929,3,HSIC
+32,plain,ant-medium-v2,28,0.5,nonlinear,70.86510585140802,4.8115071520522985,3,Plain Encoder
+33,plain,ant-medium-v2,28,1.0,nonlinear,75.81351227430264,7.901325105294372,3,Plain Encoder
+34,plain,ant-medium-v2,28,1.5,nonlinear,59.431359416919044,10.194322774207317,3,Plain Encoder
+35,plain,ant-medium-v2,28,2.0,nonlinear,61.30269951735894,7.506658910170154,3,Plain Encoder
+36,plain,ant-medium-v2,56,0.5,nonlinear,81.53355569843866,2.0407249584828717,3,Plain Encoder
+37,plain,ant-medium-v2,56,1.0,nonlinear,68.12182710378147,6.7454550957076025,3,Plain Encoder
+38,plain,ant-medium-v2,56,1.5,nonlinear,48.11560516667791,4.13760400813275,3,Plain Encoder
+39,plain,ant-medium-v2,56,2.0,nonlinear,42.282136410792354,6.357056844865941,3,Plain Encoder
+40,plain,ant-medium-v2,83,0.5,nonlinear,78.87660903902338,7.940527114402646,3,Plain Encoder
+41,plain,ant-medium-v2,83,1.0,nonlinear,64.27699212092044,4.454667062192518,3,Plain Encoder
+42,plain,ant-medium-v2,83,1.5,nonlinear,41.05423965095594,10.390519597617066,3,Plain Encoder
+43,plain,ant-medium-v2,83,2.0,nonlinear,27.679971996940367,3.505352565151652,3,Plain Encoder
+44,plain,ant-medium-v2,111,0.5,nonlinear,83.49559547863328,2.6424551748430836,3,Plain Encoder
+45,plain,ant-medium-v2,111,1.0,nonlinear,63.83147560403312,7.814175818364963,3,Plain Encoder
+46,plain,ant-medium-v2,111,1.5,nonlinear,33.28297607596196,3.795934181194852,3,Plain Encoder
+47,plain,ant-medium-v2,111,2.0,nonlinear,21.83081054481511,2.091452131833575,3,Plain Encoder
+48,raw_noisy,ant-medium-v2,28,0.5,nonlinear,77.81713110727011,4.550434507996298,3,Raw Noisy
+49,raw_noisy,ant-medium-v2,28,1.0,nonlinear,69.69149796678211,8.117821579283918,3,Raw Noisy
+50,raw_noisy,ant-medium-v2,28,1.5,nonlinear,68.74307188819725,6.876556812440433,3,Raw Noisy
+51,raw_noisy,ant-medium-v2,28,2.0,nonlinear,62.499610358602574,6.440948018297239,3,Raw Noisy
+52,raw_noisy,ant-medium-v2,56,0.5,nonlinear,79.48142083273665,7.934829699758227,3,Raw Noisy
+53,raw_noisy,ant-medium-v2,56,1.0,nonlinear,65.70922832504898,8.807002169627822,3,Raw Noisy
+54,raw_noisy,ant-medium-v2,56,1.5,nonlinear,55.38063627501584,6.685937583382583,3,Raw Noisy
+55,raw_noisy,ant-medium-v2,56,2.0,nonlinear,38.2356233254168,9.904439517369726,3,Raw Noisy
+56,raw_noisy,ant-medium-v2,83,0.5,nonlinear,84.08735482178817,5.43859949388298,3,Raw Noisy
+57,raw_noisy,ant-medium-v2,83,1.0,nonlinear,77.4510604487146,9.461010837631312,3,Raw Noisy
+58,raw_noisy,ant-medium-v2,83,1.5,nonlinear,48.24723864778614,2.614666353843142,3,Raw Noisy
+59,raw_noisy,ant-medium-v2,83,2.0,nonlinear,38.872183489424636,1.2763429434065845,3,Raw Noisy
+60,raw_noisy,ant-medium-v2,111,0.5,nonlinear,70.30995660821686,18.11557611245257,3,Raw Noisy
+61,raw_noisy,ant-medium-v2,111,1.0,nonlinear,67.39120274886008,7.092910616276547,3,Raw Noisy
+62,raw_noisy,ant-medium-v2,111,1.5,nonlinear,41.93004567045344,9.073157756790803,3,Raw Noisy
+63,raw_noisy,ant-medium-v2,111,2.0,nonlinear,32.80584455348813,4.5159119841059665,3,Raw Noisy

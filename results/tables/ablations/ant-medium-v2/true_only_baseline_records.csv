@@ -1,0 +1,5 @@
+Method,Env,Seed,Score,Layout,Source
+true_only,ant-medium-v2,1,86.43366420139826,new,/home/wyuhan/projects/robust-offline-rl-disentanglement/results/raw_metrics/true_only/ant-medium-v2/seed_1/metrics.json
+true_only,ant-medium-v2,2,83.57324949140693,new,/home/wyuhan/projects/robust-offline-rl-disentanglement/results/raw_metrics/true_only/ant-medium-v2/seed_2/metrics.json
+true_only,ant-medium-v2,3,86.7189697878769,new,/home/wyuhan/projects/robust-offline-rl-disentanglement/results/raw_metrics/true_only/ant-medium-v2/seed_3/metrics.json
+true_only,ant-medium-v2,4,78.80806078239428,new,/home/wyuhan/projects/robust-offline-rl-disentanglement/results/raw_metrics/true_only/ant-medium-v2/seed_4/metrics.json

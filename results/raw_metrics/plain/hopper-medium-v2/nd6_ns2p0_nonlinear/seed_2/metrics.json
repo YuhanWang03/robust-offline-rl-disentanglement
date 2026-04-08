@@ -1,0 +1,14 @@
+{
+  "env": "hopper-medium-v2",
+  "method": "plain",
+  "seed": 2,
+  "noise_dim": 6,
+  "noise_scale": 2.0,
+  "noise_type": "nonlinear",
+  "avg_return": 1252.6298995149982,
+  "std_return": 302.2855193734461,
+  "normalized_score": 39.11119757761836,
+  "latent_dim": 16,
+  "pretrain_epochs": 50,
+  "iql_epochs": 100
+}
