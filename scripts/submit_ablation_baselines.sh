@@ -2,13 +2,19 @@
 set -euo pipefail
 
 # ------------------------------------------------------------
+# External baseline experiments: PCA-IQL.
+# PCA projects noisy observations onto the top-k principal
+# components (k = true_state_dim), then trains IQL on the
+# projected latent states.  No privileged information and no
+# neural network encoder are used.
+#
 # Target environment — change this line to switch environments:
 #   halfcheetah-medium-v2 | hopper-medium-v2 | walker2d-medium-v2 | ant-medium-v2
 # ------------------------------------------------------------
-ENV_NAME="hopper-medium-v2"
+ENV_NAME="halfcheetah-medium-v2"
 
 # ------------------------------------------------------------
-# User-configurable cluster paths and environment
+# Cluster paths and conda environment
 # ------------------------------------------------------------
 PROJECT_ROOT="${PROJECT_ROOT:-$HOME/robust-offline-rl-disentanglement}"
 NOTEBOOK_DIR="$PROJECT_ROOT/notebooks"
@@ -27,7 +33,7 @@ mkdir -p "$JOB_DIR" "$EXEC_DIR" "$LOG_DIR"
 # ------------------------------------------------------------
 SLURM_PARTITION="${SLURM_PARTITION:-gpu-linuxlab}"
 SLURM_ACCOUNT="${SLURM_ACCOUNT:-engr-class-any}"
-SLURM_TIME="${SLURM_TIME:-03:30:00}"
+SLURM_TIME="${SLURM_TIME:-02:30:00}"   # PCA fitting is fast; IQL dominates
 SLURM_CPUS="${SLURM_CPUS:-8}"
 SLURM_MEM="${SLURM_MEM:-32G}"
 SLURM_GPUS="${SLURM_GPUS:-1}"
@@ -35,26 +41,8 @@ SLURM_GPUS="${SLURM_GPUS:-1}"
 # ------------------------------------------------------------
 # Experiment configuration
 # ------------------------------------------------------------
-# NOISY_NOTEBOOKS=(
-#   "exp_raw_noisy.ipynb"
-#   "exp_plain_encoder.ipynb"
-#   "exp_disentangled_cov.ipynb"
-#   "exp_disentangled_barlow.ipynb"
-#   "exp_disentangled_hsic.ipynb"
-#   "exp_disentangled_dcor.ipynb"
-#   "exp_disentangled_infonce.ipynb"
-#   "exp_disentangled_l1.ipynb"
-# )
-
-NOISY_NOTEBOOKS=(
-  # "exp_raw_noisy.ipynb"
-  # "exp_plain_encoder.ipynb"
-  # "exp_disentangled_cov.ipynb"
-  # "exp_disentangled_barlow.ipynb"
-  # "exp_disentangled_hsic.ipynb"
-  "exp_disentangled_dcor.ipynb"
-  # "exp_disentangled_infonce.ipynb"
-  # "exp_disentangled_l1.ipynb"
+NOTEBOOKS=(
+  "exp_pca_iql.ipynb"
 )
 
 SEEDS=(1 2 3)
@@ -70,7 +58,7 @@ scale_to_tag() {
   echo "${value//./p}"
 }
 
-submit_noisy_job() {
+submit_job() {
   local notebook="$1"
   local env_name="$2"
   local seed="$3"
@@ -84,7 +72,7 @@ submit_noisy_job() {
 
   local job_name="${method}_${env_name}_s${seed}_nd${ndim}_ns${scale_tag}_nt${ntype}"
   local job_script="$JOB_DIR/${job_name}.slurm"
-  local notebook_path="$NOTEBOOK_DIR/main/$notebook"
+  local notebook_path="$NOTEBOOK_DIR/baselines/$notebook"
 
   cat > "$job_script" <<EOT
 #!/usr/bin/env bash
@@ -117,7 +105,7 @@ export NOISE_DIM="${ndim}"
 export NOISE_SCALE="${nscale}"
 export NOISE_TYPE="${ntype}"
 
-echo "Running notebook: ${notebook}"
+echo "Running: ${notebook}"
 echo "ENV_NAME=\$ENV_NAME | SEED=\$SEED | NOISE_DIM=\$NOISE_DIM | NOISE_SCALE=\$NOISE_SCALE | NOISE_TYPE=\$NOISE_TYPE"
 
 python -m jupyter nbconvert \\
@@ -130,18 +118,18 @@ python -m jupyter nbconvert \\
 EOT
 
   sbatch "$job_script"
-  echo "✅ Submitted noisy job: $job_name"
+  echo "✅ Submitted: $job_name"
 }
 
 # ------------------------------------------------------------
-# Submit noisy methods
+# Submit baseline notebooks over the full noise grid
 # ------------------------------------------------------------
-for notebook in "${NOISY_NOTEBOOKS[@]}"; do
+for notebook in "${NOTEBOOKS[@]}"; do
   for seed in "${SEEDS[@]}"; do
     for ndim in "${NOISE_DIMS[@]}"; do
       for nscale in "${NOISE_SCALES[@]}"; do
         for ntype in "${NOISE_TYPES[@]}"; do
-          submit_noisy_job "$notebook" "$ENV_NAME" "$seed" "$ndim" "$nscale" "$ntype"
+          submit_job "$notebook" "$ENV_NAME" "$seed" "$ndim" "$nscale" "$ntype"
         done
       done
     done
@@ -149,5 +137,5 @@ for notebook in "${NOISY_NOTEBOOKS[@]}"; do
 done
 
 echo
-echo "All jobs submitted for environment: $ENV_NAME"
+echo "All baseline jobs submitted for environment: $ENV_NAME"
 echo "Use: squeue -u \$(whoami)"

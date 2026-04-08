@@ -2,13 +2,16 @@
 set -euo pipefail
 
 # ------------------------------------------------------------
+# B2 ablation: reward-only pretraining (no next-state prediction).
+# Covers all 6 disentangled methods + plain encoder.
+#
 # Target environment — change this line to switch environments:
 #   halfcheetah-medium-v2 | hopper-medium-v2 | walker2d-medium-v2 | ant-medium-v2
 # ------------------------------------------------------------
-ENV_NAME="hopper-medium-v2"
+ENV_NAME="halfcheetah-medium-v2"
 
 # ------------------------------------------------------------
-# User-configurable cluster paths and environment
+# Cluster paths and conda environment
 # ------------------------------------------------------------
 PROJECT_ROOT="${PROJECT_ROOT:-$HOME/robust-offline-rl-disentanglement}"
 NOTEBOOK_DIR="$PROJECT_ROOT/notebooks"
@@ -35,26 +38,14 @@ SLURM_GPUS="${SLURM_GPUS:-1}"
 # ------------------------------------------------------------
 # Experiment configuration
 # ------------------------------------------------------------
-# NOISY_NOTEBOOKS=(
-#   "exp_raw_noisy.ipynb"
-#   "exp_plain_encoder.ipynb"
-#   "exp_disentangled_cov.ipynb"
-#   "exp_disentangled_barlow.ipynb"
-#   "exp_disentangled_hsic.ipynb"
-#   "exp_disentangled_dcor.ipynb"
-#   "exp_disentangled_infonce.ipynb"
-#   "exp_disentangled_l1.ipynb"
-# )
-
-NOISY_NOTEBOOKS=(
-  # "exp_raw_noisy.ipynb"
-  # "exp_plain_encoder.ipynb"
-  # "exp_disentangled_cov.ipynb"
-  # "exp_disentangled_barlow.ipynb"
-  # "exp_disentangled_hsic.ipynb"
-  "exp_disentangled_dcor.ipynb"
-  # "exp_disentangled_infonce.ipynb"
-  # "exp_disentangled_l1.ipynb"
+NOTEBOOKS=(
+  "exp_disentangled_barlow_reward_only.ipynb"
+  "exp_disentangled_cov_reward_only.ipynb"
+  "exp_disentangled_dcor_reward_only.ipynb"
+  "exp_disentangled_hsic_reward_only.ipynb"
+  "exp_disentangled_infonce_reward_only.ipynb"
+  "exp_disentangled_l1_reward_only.ipynb"
+  "exp_plain_encoder_reward_only.ipynb"
 )
 
 SEEDS=(1 2 3)
@@ -70,7 +61,7 @@ scale_to_tag() {
   echo "${value//./p}"
 }
 
-submit_noisy_job() {
+submit_job() {
   local notebook="$1"
   local env_name="$2"
   local seed="$3"
@@ -84,7 +75,7 @@ submit_noisy_job() {
 
   local job_name="${method}_${env_name}_s${seed}_nd${ndim}_ns${scale_tag}_nt${ntype}"
   local job_script="$JOB_DIR/${job_name}.slurm"
-  local notebook_path="$NOTEBOOK_DIR/main/$notebook"
+  local notebook_path="$NOTEBOOK_DIR/ablation_reward_only/$notebook"
 
   cat > "$job_script" <<EOT
 #!/usr/bin/env bash
@@ -117,7 +108,7 @@ export NOISE_DIM="${ndim}"
 export NOISE_SCALE="${nscale}"
 export NOISE_TYPE="${ntype}"
 
-echo "Running notebook: ${notebook}"
+echo "Running: ${notebook}"
 echo "ENV_NAME=\$ENV_NAME | SEED=\$SEED | NOISE_DIM=\$NOISE_DIM | NOISE_SCALE=\$NOISE_SCALE | NOISE_TYPE=\$NOISE_TYPE"
 
 python -m jupyter nbconvert \\
@@ -130,18 +121,18 @@ python -m jupyter nbconvert \\
 EOT
 
   sbatch "$job_script"
-  echo "✅ Submitted noisy job: $job_name"
+  echo "✅ Submitted: $job_name"
 }
 
 # ------------------------------------------------------------
-# Submit noisy methods
+# Submit all reward-only notebooks over the noise grid
 # ------------------------------------------------------------
-for notebook in "${NOISY_NOTEBOOKS[@]}"; do
+for notebook in "${NOTEBOOKS[@]}"; do
   for seed in "${SEEDS[@]}"; do
     for ndim in "${NOISE_DIMS[@]}"; do
       for nscale in "${NOISE_SCALES[@]}"; do
         for ntype in "${NOISE_TYPES[@]}"; do
-          submit_noisy_job "$notebook" "$ENV_NAME" "$seed" "$ndim" "$nscale" "$ntype"
+          submit_job "$notebook" "$ENV_NAME" "$seed" "$ndim" "$nscale" "$ntype"
         done
       done
     done
@@ -149,5 +140,5 @@ for notebook in "${NOISY_NOTEBOOKS[@]}"; do
 done
 
 echo
-echo "All jobs submitted for environment: $ENV_NAME"
+echo "All reward_only jobs submitted for environment: $ENV_NAME"
 echo "Use: squeue -u \$(whoami)"

@@ -46,7 +46,7 @@ for seed in "${SEEDS[@]}"; do
   local_method="${TRUE_ONLY_NOTEBOOK%.ipynb}"
   job_name="${local_method}_${ENV_NAME}_s${seed}"
   job_script="$JOB_DIR/${job_name}.slurm"
-  notebook_path="$NOTEBOOK_DIR/$TRUE_ONLY_NOTEBOOK"
+  notebook_path="$NOTEBOOK_DIR/main/$TRUE_ONLY_NOTEBOOK"
 
   cat > "$job_script" <<EOT
 #!/usr/bin/env bash

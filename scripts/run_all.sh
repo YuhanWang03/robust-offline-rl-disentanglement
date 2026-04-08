@@ -27,11 +27,11 @@ export NOISE_SCALE="${NOISE_SCALE:-2.0}"
 export NOISE_TYPE="${NOISE_TYPE:-nonlinear}"
 
 # Select notebooks for local execution.
-# Use notebook filenames as they appear under notebooks/.
+# Use paths relative to notebooks/ (include subdirectory).
 NOTEBOOKS=(
-  "exp_plain_encoder_no_priv.ipynb"
-  "exp_disentangled_barlow_no_priv.ipynb"
-  "exp_disentangled_hsic_no_priv.ipynb"
+  "ablation_noisy_target/exp_plain_encoder_no_priv.ipynb"
+  "ablation_noisy_target/exp_disentangled_barlow_no_priv.ipynb"
+  "ablation_noisy_target/exp_disentangled_hsic_no_priv.ipynb"
 )
 
 # ------------------------------------------------------------
@@ -63,7 +63,7 @@ for nb in "${NOTEBOOKS[@]}"; do
     exit 1
   fi
 
-  base="${nb%.ipynb}"
+  base="$(basename "${nb%.ipynb}")"
   out_nb="${base}.out.ipynb"
   log="$LOG_DIR/${base}.log"
 

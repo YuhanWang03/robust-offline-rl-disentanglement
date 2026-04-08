@@ -67,7 +67,7 @@ def train_iql_from_loader(
         (obs, act, next_obs, rew, done, pure_obs, pure_next_obs)
     """
     repr_mode = repr_mode.lower()
-    valid_modes = {"disentangled", "plain", "raw_noisy", "true_only", "plain_no_priv", "disentangled_no_priv"}
+    valid_modes = {"disentangled", "plain", "raw_noisy", "true_only", "plain_no_priv", "disentangled_no_priv", "pca"}
     if repr_mode not in valid_modes:
         raise ValueError(
             "Unsupported repr_mode: {}. Expected one of {}.".format(
@@ -75,7 +75,7 @@ def train_iql_from_loader(
             )
         )
 
-    if repr_mode in {"disentangled", "plain", "plain_no_priv", "disentangled_no_priv"} and encoder is None:
+    if repr_mode in {"disentangled", "plain", "plain_no_priv", "disentangled_no_priv", "pca"} and encoder is None:
         raise ValueError("encoder must be provided for repr_mode='{}'".format(repr_mode))
 
     ckpt_dir = _ensure_dir(ckpt_dir)
@@ -184,7 +184,7 @@ def train_td3bc_from_loader(
         (obs, act, next_obs, rew, done, pure_obs, pure_next_obs)
     """
     repr_mode = repr_mode.lower()
-    valid_modes = {"disentangled", "plain", "raw_noisy", "true_only", "plain_no_priv", "disentangled_no_priv"}
+    valid_modes = {"disentangled", "plain", "raw_noisy", "true_only", "plain_no_priv", "disentangled_no_priv", "pca"}
     if repr_mode not in valid_modes:
         raise ValueError(
             "Unsupported repr_mode: {}. Expected one of {}.".format(
@@ -192,7 +192,7 @@ def train_td3bc_from_loader(
             )
         )
 
-    if repr_mode in {"disentangled", "plain", "plain_no_priv", "disentangled_no_priv"} and encoder is None:
+    if repr_mode in {"disentangled", "plain", "plain_no_priv", "disentangled_no_priv", "pca"} and encoder is None:
         raise ValueError("encoder must be provided for repr_mode='{}'".format(repr_mode))
 
     ckpt_dir = _ensure_dir(ckpt_dir)
@@ -298,7 +298,7 @@ def train_bc_from_loader(
         (obs, act, next_obs, rew, done, pure_obs, pure_next_obs)
     """
     repr_mode = repr_mode.lower()
-    valid_modes = {"disentangled", "plain", "raw_noisy", "true_only", "plain_no_priv", "disentangled_no_priv"}
+    valid_modes = {"disentangled", "plain", "raw_noisy", "true_only", "plain_no_priv", "disentangled_no_priv", "pca"}
     if repr_mode not in valid_modes:
         raise ValueError(
             "Unsupported repr_mode: {}. Expected one of {}.".format(
@@ -306,7 +306,7 @@ def train_bc_from_loader(
             )
         )
 
-    if repr_mode in {"disentangled", "plain", "plain_no_priv", "disentangled_no_priv"} and encoder is None:
+    if repr_mode in {"disentangled", "plain", "plain_no_priv", "disentangled_no_priv", "pca"} and encoder is None:
         raise ValueError("encoder must be provided for repr_mode='{}'".format(repr_mode))
 
     ckpt_dir = _ensure_dir(ckpt_dir)
@@ -520,7 +520,7 @@ def eval_policy_on_env(
 
             if encoder is None:
                 z = model_in
-            elif method.startswith(("plain", "disentangled")):
+            elif method.startswith(("plain", "disentangled")) or method == "pca":
                 z, _ = encoder(model_in)
             else:
                 raise ValueError("Unknown method: {}".format(method))
