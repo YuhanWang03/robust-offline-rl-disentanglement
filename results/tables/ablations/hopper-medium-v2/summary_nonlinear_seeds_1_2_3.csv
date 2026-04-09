@@ -15,43 +15,51 @@ index,Method,Env,Dim,Scale,Type,mean,std,count,Method Name
 13,disentangled_barlow,hopper-medium-v2,11,1.0,nonlinear,46.00284676632406,2.4729892827048494,3,Barlow
 14,disentangled_barlow,hopper-medium-v2,11,1.5,nonlinear,42.531309477582234,0.9630504118101224,3,Barlow
 15,disentangled_barlow,hopper-medium-v2,11,2.0,nonlinear,39.37370100397104,5.506228197540449,3,Barlow
-16,disentangled_hsic,hopper-medium-v2,6,0.5,nonlinear,43.744486498628454,2.4159092660038777,3,HSIC
-17,disentangled_hsic,hopper-medium-v2,6,1.0,nonlinear,42.54034395981375,2.3295462144399686,3,HSIC
-18,disentangled_hsic,hopper-medium-v2,6,1.5,nonlinear,43.9806930685256,1.993953236068183,3,HSIC
-19,disentangled_hsic,hopper-medium-v2,6,2.0,nonlinear,43.33467989785643,5.474850368107867,3,HSIC
-20,disentangled_hsic,hopper-medium-v2,8,0.5,nonlinear,46.37301797147143,2.2644222577115816,3,HSIC
-21,disentangled_hsic,hopper-medium-v2,8,1.0,nonlinear,46.88020543016756,2.5943294271804023,3,HSIC
-22,disentangled_hsic,hopper-medium-v2,8,1.5,nonlinear,43.65776245254548,1.9158227848790617,3,HSIC
-23,disentangled_hsic,hopper-medium-v2,8,2.0,nonlinear,41.572914669167304,0.7039758778142506,3,HSIC
-24,plain,hopper-medium-v2,3,0.5,nonlinear,47.68764080285994,3.634944221130806,3,Plain Encoder
-25,plain,hopper-medium-v2,3,1.0,nonlinear,46.137482158687156,1.2575263536657548,3,Plain Encoder
-26,plain,hopper-medium-v2,3,1.5,nonlinear,43.27073747358369,1.5665005810331216,3,Plain Encoder
-27,plain,hopper-medium-v2,3,2.0,nonlinear,41.658343694106456,5.2662786684873035,3,Plain Encoder
-28,plain,hopper-medium-v2,6,0.5,nonlinear,48.64892821541466,2.242931695223677,3,Plain Encoder
-29,plain,hopper-medium-v2,6,1.0,nonlinear,44.67909872042986,1.8551927895390812,3,Plain Encoder
-30,plain,hopper-medium-v2,6,1.5,nonlinear,43.096774728794145,1.6309380191467622,3,Plain Encoder
-31,plain,hopper-medium-v2,6,2.0,nonlinear,40.31305017551853,1.5331052136972305,3,Plain Encoder
-32,plain,hopper-medium-v2,8,0.5,nonlinear,45.142891527576246,2.056848999730313,3,Plain Encoder
-33,plain,hopper-medium-v2,8,1.0,nonlinear,41.93534813892111,3.792020605499158,3,Plain Encoder
-34,plain,hopper-medium-v2,8,1.5,nonlinear,42.557364058770105,4.575052192337408,3,Plain Encoder
-35,plain,hopper-medium-v2,8,2.0,nonlinear,39.287702108554846,6.1989372174692905,3,Plain Encoder
-36,plain,hopper-medium-v2,11,0.5,nonlinear,44.225901304305744,0.44025618956744167,3,Plain Encoder
-37,plain,hopper-medium-v2,11,1.0,nonlinear,39.468233426462525,3.8144261949660105,3,Plain Encoder
-38,plain,hopper-medium-v2,11,1.5,nonlinear,39.38888004011623,5.690322013835013,3,Plain Encoder
-39,plain,hopper-medium-v2,11,2.0,nonlinear,33.87114214629922,0.2812580716840117,3,Plain Encoder
-40,raw_noisy,hopper-medium-v2,3,0.5,nonlinear,44.878324859730434,3.061271205562504,3,Raw Noisy
-41,raw_noisy,hopper-medium-v2,3,1.0,nonlinear,46.04605347372902,0.7851853664786526,3,Raw Noisy
-42,raw_noisy,hopper-medium-v2,3,1.5,nonlinear,42.21415379649621,3.089933564832188,3,Raw Noisy
-43,raw_noisy,hopper-medium-v2,3,2.0,nonlinear,44.427010032639906,4.477443896486874,3,Raw Noisy
-44,raw_noisy,hopper-medium-v2,6,0.5,nonlinear,41.76620600230302,3.607643939970997,3,Raw Noisy
-45,raw_noisy,hopper-medium-v2,6,1.0,nonlinear,42.19557859961582,0.7606862878732106,3,Raw Noisy
-46,raw_noisy,hopper-medium-v2,6,1.5,nonlinear,42.742804452418085,1.605208869436002,3,Raw Noisy
-47,raw_noisy,hopper-medium-v2,6,2.0,nonlinear,44.20486144865706,3.954017705597941,3,Raw Noisy
-48,raw_noisy,hopper-medium-v2,8,0.5,nonlinear,45.09274930229713,2.7989024667656897,3,Raw Noisy
-49,raw_noisy,hopper-medium-v2,8,1.0,nonlinear,45.85202791641476,4.101376716204108,3,Raw Noisy
-50,raw_noisy,hopper-medium-v2,8,1.5,nonlinear,42.87520748036065,2.455688928266283,3,Raw Noisy
-51,raw_noisy,hopper-medium-v2,8,2.0,nonlinear,36.207759194555095,0.9450876509493945,3,Raw Noisy
-52,raw_noisy,hopper-medium-v2,11,0.5,nonlinear,42.782126553762616,4.497996192337928,3,Raw Noisy
-53,raw_noisy,hopper-medium-v2,11,1.0,nonlinear,45.286754102226546,5.548825623348462,3,Raw Noisy
-54,raw_noisy,hopper-medium-v2,11,1.5,nonlinear,42.75729723156462,4.024431358490624,3,Raw Noisy
-55,raw_noisy,hopper-medium-v2,11,2.0,nonlinear,34.31368370725827,1.8062775441675953,3,Raw Noisy
+16,disentangled_hsic,hopper-medium-v2,3,0.5,nonlinear,45.663533898805504,3.109736615045879,3,HSIC
+17,disentangled_hsic,hopper-medium-v2,3,1.0,nonlinear,43.935410412417916,3.693613079297714,3,HSIC
+18,disentangled_hsic,hopper-medium-v2,3,1.5,nonlinear,44.966612409317996,2.441850449367104,3,HSIC
+19,disentangled_hsic,hopper-medium-v2,3,2.0,nonlinear,42.67048238182162,2.902247643431059,3,HSIC
+20,disentangled_hsic,hopper-medium-v2,6,0.5,nonlinear,43.744486498628454,2.4159092660038777,3,HSIC
+21,disentangled_hsic,hopper-medium-v2,6,1.0,nonlinear,42.54034395981375,2.3295462144399686,3,HSIC
+22,disentangled_hsic,hopper-medium-v2,6,1.5,nonlinear,43.9806930685256,1.993953236068183,3,HSIC
+23,disentangled_hsic,hopper-medium-v2,6,2.0,nonlinear,43.33467989785643,5.474850368107867,3,HSIC
+24,disentangled_hsic,hopper-medium-v2,8,0.5,nonlinear,46.37301797147143,2.2644222577115816,3,HSIC
+25,disentangled_hsic,hopper-medium-v2,8,1.0,nonlinear,46.88020543016756,2.5943294271804023,3,HSIC
+26,disentangled_hsic,hopper-medium-v2,8,1.5,nonlinear,43.65776245254548,1.9158227848790617,3,HSIC
+27,disentangled_hsic,hopper-medium-v2,8,2.0,nonlinear,41.572914669167304,0.7039758778142506,3,HSIC
+28,disentangled_hsic,hopper-medium-v2,11,0.5,nonlinear,47.14666904746934,4.072607327534078,3,HSIC
+29,disentangled_hsic,hopper-medium-v2,11,1.0,nonlinear,43.139934026996336,4.060842197986206,3,HSIC
+30,disentangled_hsic,hopper-medium-v2,11,1.5,nonlinear,40.81148636203148,3.024283195572525,3,HSIC
+31,disentangled_hsic,hopper-medium-v2,11,2.0,nonlinear,39.98919985256784,1.7543988258977112,3,HSIC
+32,plain,hopper-medium-v2,3,0.5,nonlinear,47.68764080285994,3.634944221130806,3,Plain Encoder
+33,plain,hopper-medium-v2,3,1.0,nonlinear,46.137482158687156,1.2575263536657548,3,Plain Encoder
+34,plain,hopper-medium-v2,3,1.5,nonlinear,43.27073747358369,1.5665005810331216,3,Plain Encoder
+35,plain,hopper-medium-v2,3,2.0,nonlinear,41.658343694106456,5.2662786684873035,3,Plain Encoder
+36,plain,hopper-medium-v2,6,0.5,nonlinear,48.64892821541466,2.242931695223677,3,Plain Encoder
+37,plain,hopper-medium-v2,6,1.0,nonlinear,44.67909872042986,1.8551927895390812,3,Plain Encoder
+38,plain,hopper-medium-v2,6,1.5,nonlinear,43.096774728794145,1.6309380191467622,3,Plain Encoder
+39,plain,hopper-medium-v2,6,2.0,nonlinear,40.31305017551853,1.5331052136972305,3,Plain Encoder
+40,plain,hopper-medium-v2,8,0.5,nonlinear,45.142891527576246,2.056848999730313,3,Plain Encoder
+41,plain,hopper-medium-v2,8,1.0,nonlinear,41.93534813892111,3.792020605499158,3,Plain Encoder
+42,plain,hopper-medium-v2,8,1.5,nonlinear,42.557364058770105,4.575052192337408,3,Plain Encoder
+43,plain,hopper-medium-v2,8,2.0,nonlinear,39.287702108554846,6.1989372174692905,3,Plain Encoder
+44,plain,hopper-medium-v2,11,0.5,nonlinear,44.225901304305744,0.44025618956744167,3,Plain Encoder
+45,plain,hopper-medium-v2,11,1.0,nonlinear,39.468233426462525,3.8144261949660105,3,Plain Encoder
+46,plain,hopper-medium-v2,11,1.5,nonlinear,39.38888004011623,5.690322013835013,3,Plain Encoder
+47,plain,hopper-medium-v2,11,2.0,nonlinear,33.87114214629922,0.2812580716840117,3,Plain Encoder
+48,raw_noisy,hopper-medium-v2,3,0.5,nonlinear,44.878324859730434,3.061271205562504,3,Raw Noisy
+49,raw_noisy,hopper-medium-v2,3,1.0,nonlinear,46.04605347372902,0.7851853664786526,3,Raw Noisy
+50,raw_noisy,hopper-medium-v2,3,1.5,nonlinear,42.21415379649621,3.089933564832188,3,Raw Noisy
+51,raw_noisy,hopper-medium-v2,3,2.0,nonlinear,44.427010032639906,4.477443896486874,3,Raw Noisy
+52,raw_noisy,hopper-medium-v2,6,0.5,nonlinear,41.76620600230302,3.607643939970997,3,Raw Noisy
+53,raw_noisy,hopper-medium-v2,6,1.0,nonlinear,42.19557859961582,0.7606862878732106,3,Raw Noisy
+54,raw_noisy,hopper-medium-v2,6,1.5,nonlinear,42.742804452418085,1.605208869436002,3,Raw Noisy
+55,raw_noisy,hopper-medium-v2,6,2.0,nonlinear,44.20486144865706,3.954017705597941,3,Raw Noisy
+56,raw_noisy,hopper-medium-v2,8,0.5,nonlinear,45.09274930229713,2.7989024667656897,3,Raw Noisy
+57,raw_noisy,hopper-medium-v2,8,1.0,nonlinear,45.85202791641476,4.101376716204108,3,Raw Noisy
+58,raw_noisy,hopper-medium-v2,8,1.5,nonlinear,42.87520748036065,2.455688928266283,3,Raw Noisy
+59,raw_noisy,hopper-medium-v2,8,2.0,nonlinear,36.207759194555095,0.9450876509493945,3,Raw Noisy
+60,raw_noisy,hopper-medium-v2,11,0.5,nonlinear,42.782126553762616,4.497996192337928,3,Raw Noisy
+61,raw_noisy,hopper-medium-v2,11,1.0,nonlinear,45.286754102226546,5.548825623348462,3,Raw Noisy
+62,raw_noisy,hopper-medium-v2,11,1.5,nonlinear,42.75729723156462,4.024431358490624,3,Raw Noisy
+63,raw_noisy,hopper-medium-v2,11,2.0,nonlinear,34.31368370725827,1.8062775441675953,3,Raw Noisy
