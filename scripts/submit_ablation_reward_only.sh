@@ -39,17 +39,14 @@ SLURM_GPUS="${SLURM_GPUS:-1}"
 # Experiment configuration
 # ------------------------------------------------------------
 NOTEBOOKS=(
-  "exp_disentangled_barlow_reward_only.ipynb"
-  "exp_disentangled_cov_reward_only.ipynb"
-  "exp_disentangled_dcor_reward_only.ipynb"
-  "exp_disentangled_hsic_reward_only.ipynb"
-  "exp_disentangled_infonce_reward_only.ipynb"
-  "exp_disentangled_l1_reward_only.ipynb"
+  # "exp_disentangled_barlow_reward_only.ipynb"
+  # "exp_disentangled_dcor_reward_only.ipynb"
+  # "exp_disentangled_hsic_reward_only.ipynb"
   "exp_plain_encoder_reward_only.ipynb"
 )
 
-SEEDS=(1 2 3)
-NOISE_DIMS=(3 6 8 11)
+SEEDS=(2)
+NOISE_DIMS=(4 8 13 17)
 NOISE_SCALES=(0.5 1.0 1.5 2.0)
 NOISE_TYPES=("nonlinear")
 

@@ -1,0 +1,4 @@
+Method,Env,Seed,Score
+true_only,ant-medium-v2,1,86.43366420139826
+true_only,ant-medium-v2,3,86.7189697878769
+true_only,ant-medium-v2,2,83.57324949140693

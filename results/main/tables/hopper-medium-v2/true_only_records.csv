@@ -1,0 +1,4 @@
+Method,Env,Seed,Score
+true_only,hopper-medium-v2,1,49.678075998434565
+true_only,hopper-medium-v2,3,36.58568570695563
+true_only,hopper-medium-v2,2,38.97679136036155

@@ -1,0 +1,4 @@
+Method,Env,Seed,Score
+true_only_td3bc,halfcheetah-medium-v2,1,47.08820632861254
+true_only_td3bc,halfcheetah-medium-v2,3,46.861397005744884
+true_only_td3bc,halfcheetah-medium-v2,2,47.409397555173264

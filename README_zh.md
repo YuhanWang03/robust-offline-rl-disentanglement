@@ -35,6 +35,8 @@
 | 方法 | 说明 |
 |---|---|
 | `pca` | PCA-IQL——将带噪观测投影到前 k 个主成分（无神经网络编码器，无特权信息） |
+| `riql` | RIQL——具备噪声感知价值估计的鲁棒 IQL 变体 |
+| `denoised_mdp` | Denoised MDP——学习一个隐空间世界模型，显式分离任务相关维度与噪声维度 |
 
 ---
 
@@ -45,6 +47,7 @@
 | **B1 — 去除特权监督** | 移除干净状态监督，编码器改为在带噪下一观测上做预测 |
 | **B2 — 仅奖励预训练** | 移除动力学损失，仅保留奖励预测 + 解耦正则 |
 | **A — 算法消融** | 将 IQL 替换为 TD3+BC 或 BC，编码器预训练不变 |
+| **C — independence loss weight 扫描** | 在 `ant-medium-v2` + nonlinear 噪声下，对 Barlow / HSIC / dCor 扫描 `indep_weight`，诊断超参数敏感性 |
 
 ---
 
@@ -128,7 +131,7 @@ robust-offline-rl-disentanglement/
 ├── src/
 │   ├── __init__.py
 │   ├── config.py              # 全局路径常量
-│   ├── experiment_config.py   # 读取环境变量覆盖（ENV_NAME、SEED 等）
+│   ├── experiment_config.py   # 读取环境变量覆盖（ENV_NAME、SEED、INDEP_WEIGHT 等）
 │   ├── dataset.py             # NoisyOfflineRLDataset
 │   ├── encoder.py             # DisentangledEncoder
 │   ├── pca_encoder.py         # PCAEncoder（外部基线）
@@ -139,13 +142,17 @@ robust-offline-rl-disentanglement/
 │   ├── utils.py
 │   └── visualization.py
 ├── scripts/
-│   ├── run_all.sh                      # 本地执行（编辑 NOTEBOOKS 数组）
-│   ├── submit_all.sh                   # Slurm：主 IQL 实验
-│   ├── submit_true_only.sh             # Slurm：true_only 基线
-│   ├── submit_ablation_reward_only.sh  # Slurm：B2 仅奖励消融
-│   ├── submit_ablation_td3bc.sh        # Slurm：算法消融 A（TD3+BC）
-│   ├── submit_ablation_bc.sh           # Slurm：算法消融 A（BC）
-│   └── submit_ablation_baselines.sh    # Slurm：外部基线（PCA-IQL）
+│   ├── run_all.sh                            # 本地执行（编辑 NOTEBOOKS 数组）
+│   ├── submit_all.sh                         # Slurm：主 IQL 实验
+│   ├── submit_true_only.sh                   # Slurm：true_only 基线
+│   ├── submit_ablation_reward_only.sh        # Slurm：B2 仅奖励消融
+│   ├── submit_ablation_td3bc.sh              # Slurm：算法消融 A（TD3+BC）
+│   ├── submit_ablation_bc.sh                 # Slurm：算法消融 A（BC）
+│   ├── submit_external_methods.sh            # Slurm：外部对比方法（PCA-IQL、RIQL 等）
+│   ├── submit_sweep_barlow_indep_weight.sh   # Slurm：消融 C — Barlow indep_weight 扫描
+│   ├── submit_sweep_hsic_indep_weight.sh     # Slurm：消融 C — HSIC indep_weight 扫描
+│   ├── submit_sweep_dcor_indep_weight.sh     # Slurm：消融 C — dCor indep_weight 扫描
+│   └── runpod_sweep_barlow_indep_weight.sh   # RunPod：Barlow indep_weight 扫描（单 GPU 两并发）
 ├── notebooks/
 │   ├── main/                      # PPF 主实验（IQL）
 │   │   ├── exp_true_only.ipynb
@@ -193,23 +200,42 @@ robust-offline-rl-disentanglement/
 │   │   ├── exp_disentangled_dcor_bc.ipynb
 │   │   ├── exp_disentangled_infonce_bc.ipynb
 │   │   └── exp_disentangled_l1_bc.ipynb
-│   ├── baselines/                 # 外部基线
-│   │   └── exp_pca_iql.ipynb
-│   └── analysis/                  # 汇总分析与可视化
-│       ├── eval_all.ipynb
-│       ├── eval_no_priv_ablation.ipynb
-│       ├── select_best_methods.ipynb
-│       ├── exp_lambda_sensitivity.ipynb
-│       └── visualization.ipynb
+│   ├── external_methods/          # 外部对比方法
+│   │   ├── exp_pca_iql.ipynb
+│   │   ├── exp_riql.ipynb
+│   │   └── exp_denoised_mdp.ipynb
+│   ├── ablation_indep_weight/     # C：independence loss weight 扫描（Barlow / HSIC / dCor）
+│   │   ├── exp_disentangled_barlow_indep_sweep.ipynb
+│   │   ├── exp_disentangled_hsic_indep_sweep.ipynb
+│   │   └── exp_disentangled_dcor_indep_sweep.ipynb
+│   └── analysis/                  # 纯分析——只读 results/raw_metrics/
+│       ├── 01_main_results.ipynb         # 主实验 IQL 结果（柱状图 + 折线图、汇总表）
+│       ├── 02_ablation_results.ipynb     # 四类消融对比（BC、TD3+BC、仅奖励、无特权）
+│       ├── 03_external_methods.ipynb     # 外部基线对比（PCA-IQL、RIQL、Denoised MDP）
+│       ├── 04_comprehensive.ipynb        # 跨方法综合对比（聚合视图 / 典型配置视图）
+│       └── 05_method_selection.ipynb     # 最优方法筛选 + 跨环境汇总图
 ├── artifacts/
 │   ├── checkpoints/
 │   ├── executed/
 │   ├── obs_stats/
 │   └── slurm_jobs/
 ├── results/
-│   ├── figures/
-│   ├── tables/
-│   └── raw_metrics/
+│   ├── raw_metrics/            # 训练输出——分析 notebook 只读不写
+│   ├── main/                   # 01_main_results.ipynb 的输出
+│   │   ├── figures/
+│   │   └── tables/
+│   ├── ablation/               # 02_ablation_results.ipynb 的输出
+│   │   ├── figures/
+│   │   └── tables/
+│   ├── external_methods/       # 03_external_methods.ipynb 的输出
+│   │   ├── figures/
+│   │   └── tables/
+│   ├── comprehensive/          # 04_comprehensive.ipynb 的输出
+│   │   ├── figures/
+│   │   └── tables/
+│   └── method_selection/       # 05_method_selection.ipynb 的输出
+│       ├── figures/
+│       └── tables/
 └── logs/
 ```
 
@@ -249,6 +275,28 @@ artifacts/checkpoints/true_only/<env_name>/seed_<n>/
 results/raw_metrics/true_only/<env_name>/seed_<n>/metrics.json
 ```
 
+### 消融 C — independence loss weight 扫描
+
+`indep_weight` 扫描在 `seed_<n>` 之下多一层 `iw_<value>`。观测归一化统计只与数据集有关（与 `indep_weight` 无关），因此 `obs_stats.npz` 提升到 seed 层共享：
+
+```text
+artifacts/
+├── checkpoints/
+│   └── <method>/<env_name>/<noise_tag>/seed_<n>/iw_<value>/
+│       ├── encoder_epoch_50.pth
+│       └── iql_epoch_*.pth
+└── obs_stats/
+    └── <method>/<env_name>/<noise_tag>/seed_<n>/   ← 所有 iw_* 共享
+        └── obs_stats.npz
+
+results/
+└── raw_metrics/
+    └── <method>/<env_name>/<noise_tag>/seed_<n>/iw_<value>/
+        └── metrics.json    ← 含 pretrain_history（各 epoch loss 分量）
+```
+
+典型的 `iw_tag` 形如 `iw_0p005`（indep_weight=0.005）。
+
 ---
 
 ## 如何运行实验
@@ -279,7 +327,10 @@ bash scripts/run_all.sh
 | `submit_ablation_reward_only.sh` | B2：仅奖励预训练消融 |
 | `submit_ablation_td3bc.sh` | 消融 A：TD3+BC 策略 |
 | `submit_ablation_bc.sh` | 消融 A：BC 策略 |
-| `submit_ablation_baselines.sh` | 外部基线（PCA-IQL） |
+| `submit_external_methods.sh` | 外部对比方法（PCA-IQL、RIQL 等） |
+| `submit_sweep_barlow_indep_weight.sh` | 消融 C：Barlow `indep_weight` 扫描（15 个点） |
+| `submit_sweep_hsic_indep_weight.sh` | 消融 C：HSIC `indep_weight` 扫描（15 个点） |
+| `submit_sweep_dcor_indep_weight.sh` | 消融 C：dCor `indep_weight` 扫描（15 个点） |
 
 ```bash
 bash scripts/submit_all.sh
@@ -298,9 +349,12 @@ jupyter lab
 ## 推荐工作流
 
 1. 运行 `notebooks/main/` 中的主实验（目标环境 × 噪声配置）。
-2. 运行各消融组（`ablation_noisy_target/`、`ablation_reward_only/`、`ablation_td3bc/`、`ablation_bc/`）和外部基线（`baselines/`）。
-3. 使用 `notebooks/analysis/eval_all.ipynb` 汇总 `results/raw_metrics/`。
-4. 将图保存到 `results/figures/`，将汇总表保存到 `results/tables/`。
+2. 运行各消融组（`ablation_noisy_target/`、`ablation_reward_only/`、`ablation_td3bc/`、`ablation_bc/`）和外部对比方法（`external_methods/`）。
+3. 打开 `notebooks/analysis/01_main_results.ipynb`，生成主实验 IQL 噪声 sweep 柱状图、折线图和汇总表。
+4. 打开 `notebooks/analysis/02_ablation_results.ipynb`（设置 `TARGET_ABLATION`），将各消融变体与主实验 IQL 基线进行对比。
+5. 打开 `notebooks/analysis/03_external_methods.ipynb`，对比外部方法（PCA-IQL、RIQL、Denoised MDP）与 IQL 的性能。
+6. 打开 `notebooks/analysis/04_comprehensive.ipynb`，以聚合视图或典型配置视图对所有方法进行综合对比。
+7. 打开 `notebooks/analysis/05_method_selection.ipynb`，筛选各环境最优方法并生成跨环境汇总图。
 
 ---
 
@@ -345,7 +399,8 @@ jupyter lab
 - [ ] 消融 A——算法消融：TD3+BC 和 BC 策略
 - [ ] 消融 B1 + B2——扩展至全环境
 - [ ] 外部基线——PCA-IQL（全环境）
-- [ ] 分析——lambda 敏感性分析、跨环境汇总表、publication-ready 图表
+- [ ] 消融 C——Barlow / HSIC / dCor 在 `ant-medium-v2` + nonlinear 下的 `indep_weight` 扫描
+- [ ] 分析——跨环境汇总表、publication-ready 图表
 
 ---
 

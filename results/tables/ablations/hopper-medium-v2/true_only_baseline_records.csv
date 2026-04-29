@@ -1,5 +1,0 @@
-Method,Env,Seed,Score,Layout,Source
-true_only,hopper-medium-v2,1,49.678075998434565,new,/home/wyuhan/projects/robust-offline-rl-disentanglement/results/raw_metrics/true_only/hopper-medium-v2/seed_1/metrics.json
-true_only,hopper-medium-v2,2,38.97679136036155,new,/home/wyuhan/projects/robust-offline-rl-disentanglement/results/raw_metrics/true_only/hopper-medium-v2/seed_2/metrics.json
-true_only,hopper-medium-v2,3,36.58568570695563,new,/home/wyuhan/projects/robust-offline-rl-disentanglement/results/raw_metrics/true_only/hopper-medium-v2/seed_3/metrics.json
-true_only,hopper-medium-v2,4,64.87819547620748,new,/home/wyuhan/projects/robust-offline-rl-disentanglement/results/raw_metrics/true_only/hopper-medium-v2/seed_4/metrics.json

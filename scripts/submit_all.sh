@@ -5,7 +5,7 @@ set -euo pipefail
 # Target environment — change this line to switch environments:
 #   halfcheetah-medium-v2 | hopper-medium-v2 | walker2d-medium-v2 | ant-medium-v2
 # ------------------------------------------------------------
-ENV_NAME="hopper-medium-v2"
+ENV_NAME="ant-medium-v2"
 
 # ------------------------------------------------------------
 # User-configurable cluster paths and environment
@@ -58,7 +58,7 @@ NOISY_NOTEBOOKS=(
 )
 
 SEEDS=(1 2 3)
-NOISE_DIMS=(3 6 8 11)
+NOISE_DIMS=(28 56 83 111)
 NOISE_SCALES=(0.5 1.0 1.5 2.0)
 NOISE_TYPES=("nonlinear")
 

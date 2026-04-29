@@ -1,0 +1,24 @@
+{
+  "env": "halfcheetah-medium-v2",
+  "method": "disentangled_hsic_no_priv",
+  "seed": 1,
+  "noise_dim": 4,
+  "noise_scale": 0.5,
+  "noise_type": "nonlinear",
+  "avg_return": 1271.9980686798367,
+  "std_return": 877.1232197730557,
+  "normalized_score": 12.50225250522683,
+  "latent_dim": 25,
+  "pretrain_epochs": 1,
+  "iql_epochs": 1,
+  "encoder_checkpoint": "/workspace/robust-offline-rl-disentanglement/artifacts/checkpoints/disentangled_hsic_no_priv/halfcheetah-medium-v2/nd4_ns0p5_nonlinear/seed_1/encoder_epoch_1.pth",
+  "obs_stats_path": "/workspace/robust-offline-rl-disentanglement/artifacts/obs_stats/disentangled_hsic_no_priv/halfcheetah-medium-v2/nd4_ns0p5_nonlinear/seed_1/obs_stats.npz",
+  "iql_history": [
+    {
+      "epoch": 1,
+      "value_loss": 0.0492224358022213,
+      "q_loss": 8.399893760681152,
+      "actor_loss": -0.5394045114517212
+    }
+  ]
+}

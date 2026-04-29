@@ -30,11 +30,13 @@ The repository is organized for both **course-project reproducibility** and **co
 | `disentangled_infonce` | PPF + InfoNCE contrastive penalty |
 | `disentangled_l1` | PPF + L1 cross-correlation penalty |
 
-### External baseline
+### External baselines
 
 | Method | Description |
 |---|---|
 | `pca` | PCA-IQL — projects noisy observations onto top-k PCA components (no neural encoder, no privileged information) |
+| `riql` | RIQL — robust IQL variant with noise-aware value estimation |
+| `denoised_mdp` | Denoised MDP — learns a latent world model that explicitly separates task-relevant and noise dimensions |
 
 ---
 
@@ -45,6 +47,7 @@ The repository is organized for both **course-project reproducibility** and **co
 | **B1 — no privileged target** | Remove clean-state supervision; encoder trained on noisy next-obs prediction |
 | **B2 — reward only** | Remove dynamics loss; encoder trained on reward prediction + disentanglement only |
 | **A — algorithm** | Replace IQL with TD3+BC or BC; encoder pretraining unchanged |
+| **C — independence loss weight sweep** | Sweep `indep_weight` for Barlow / HSIC / dCor on `ant-medium-v2` + nonlinear noise to diagnose hyperparameter sensitivity |
 
 ---
 
@@ -128,7 +131,7 @@ robust-offline-rl-disentanglement/
 ├── src/
 │   ├── __init__.py
 │   ├── config.py              # global path constants
-│   ├── experiment_config.py   # reads env-var overrides (ENV_NAME, SEED, etc.)
+│   ├── experiment_config.py   # reads env-var overrides (ENV_NAME, SEED, INDEP_WEIGHT, etc.)
 │   ├── dataset.py             # NoisyOfflineRLDataset
 │   ├── encoder.py             # DisentangledEncoder
 │   ├── pca_encoder.py         # PCAEncoder (external baseline)
@@ -139,13 +142,17 @@ robust-offline-rl-disentanglement/
 │   ├── utils.py
 │   └── visualization.py
 ├── scripts/
-│   ├── run_all.sh                      # local execution (edit NOTEBOOKS array)
-│   ├── submit_all.sh                   # Slurm: main IQL methods
-│   ├── submit_true_only.sh             # Slurm: true_only baseline
-│   ├── submit_ablation_reward_only.sh  # Slurm: B2 reward-only ablation
-│   ├── submit_ablation_td3bc.sh        # Slurm: ablation A with TD3+BC
-│   ├── submit_ablation_bc.sh           # Slurm: ablation A with BC
-│   └── submit_ablation_baselines.sh    # Slurm: external baselines (PCA-IQL)
+│   ├── run_all.sh                            # local execution (edit NOTEBOOKS array)
+│   ├── submit_all.sh                         # Slurm: main IQL methods
+│   ├── submit_true_only.sh                   # Slurm: true_only baseline
+│   ├── submit_ablation_reward_only.sh        # Slurm: B2 reward-only ablation
+│   ├── submit_ablation_td3bc.sh              # Slurm: ablation A with TD3+BC
+│   ├── submit_ablation_bc.sh                 # Slurm: ablation A with BC
+│   ├── submit_external_methods.sh            # Slurm: external comparison methods (PCA-IQL, RIQL, ...)
+│   ├── submit_sweep_barlow_indep_weight.sh   # Slurm: ablation C — Barlow indep_weight sweep
+│   ├── submit_sweep_hsic_indep_weight.sh     # Slurm: ablation C — HSIC indep_weight sweep
+│   ├── submit_sweep_dcor_indep_weight.sh     # Slurm: ablation C — dCor indep_weight sweep
+│   └── runpod_sweep_barlow_indep_weight.sh   # RunPod: Barlow indep_weight sweep (2 jobs/GPU)
 ├── notebooks/
 │   ├── main/                      # PPF main experiments (IQL)
 │   │   ├── exp_true_only.ipynb
@@ -193,23 +200,42 @@ robust-offline-rl-disentanglement/
 │   │   ├── exp_disentangled_dcor_bc.ipynb
 │   │   ├── exp_disentangled_infonce_bc.ipynb
 │   │   └── exp_disentangled_l1_bc.ipynb
-│   ├── baselines/                 # External baselines
-│   │   └── exp_pca_iql.ipynb
-│   └── analysis/                  # Aggregation and visualization
-│       ├── eval_all.ipynb
-│       ├── eval_no_priv_ablation.ipynb
-│       ├── select_best_methods.ipynb
-│       ├── exp_lambda_sensitivity.ipynb
-│       └── visualization.ipynb
+│   ├── external_methods/          # External comparison methods from literature
+│   │   ├── exp_pca_iql.ipynb
+│   │   ├── exp_riql.ipynb
+│   │   └── exp_denoised_mdp.ipynb
+│   ├── ablation_indep_weight/     # C: independence loss weight sweep (Barlow / HSIC / dCor)
+│   │   ├── exp_disentangled_barlow_indep_sweep.ipynb
+│   │   ├── exp_disentangled_hsic_indep_sweep.ipynb
+│   │   └── exp_disentangled_dcor_indep_sweep.ipynb
+│   └── analysis/                  # Pure analysis — read-only from results/raw_metrics/
+│       ├── 01_main_results.ipynb         # Main IQL results (bar + line charts, summary tables)
+│       ├── 02_ablation_results.ipynb     # Four ablation types (BC, TD3+BC, reward-only, no-priv)
+│       ├── 03_external_methods.ipynb     # External baseline comparison (PCA-IQL, RIQL, Denoised MDP)
+│       ├── 04_comprehensive.ipynb        # Cross-method overview (aggregated / canonical view)
+│       └── 05_method_selection.ipynb     # Best method selection + cross-environment summary
 ├── artifacts/
 │   ├── checkpoints/
 │   ├── executed/
 │   ├── obs_stats/
 │   └── slurm_jobs/
 ├── results/
-│   ├── figures/
-│   ├── tables/
-│   └── raw_metrics/
+│   ├── raw_metrics/            # training outputs — never modified by analysis notebooks
+│   ├── main/                   # outputs from 01_main_results.ipynb
+│   │   ├── figures/
+│   │   └── tables/
+│   ├── ablation/               # outputs from 02_ablation_results.ipynb
+│   │   ├── figures/
+│   │   └── tables/
+│   ├── external_methods/       # outputs from 03_external_methods.ipynb
+│   │   ├── figures/
+│   │   └── tables/
+│   ├── comprehensive/          # outputs from 04_comprehensive.ipynb
+│   │   ├── figures/
+│   │   └── tables/
+│   └── method_selection/       # outputs from 05_method_selection.ipynb
+│       ├── figures/
+│       └── tables/
 └── logs/
 ```
 
@@ -249,6 +275,28 @@ artifacts/checkpoints/true_only/<env_name>/seed_<n>/
 results/raw_metrics/true_only/<env_name>/seed_<n>/metrics.json
 ```
 
+### Ablation C — independence loss weight sweep
+
+The `indep_weight` sweep adds an `iw_<value>` level below `seed_<n>`. Observation statistics depend only on the dataset (not on `indep_weight`), so `obs_stats.npz` is shared at the seed level:
+
+```text
+artifacts/
+├── checkpoints/
+│   └── <method>/<env_name>/<noise_tag>/seed_<n>/iw_<value>/
+│       ├── encoder_epoch_50.pth
+│       └── iql_epoch_*.pth
+└── obs_stats/
+    └── <method>/<env_name>/<noise_tag>/seed_<n>/   ← shared across all iw_* runs
+        └── obs_stats.npz
+
+results/
+└── raw_metrics/
+    └── <method>/<env_name>/<noise_tag>/seed_<n>/iw_<value>/
+        └── metrics.json                             ← includes pretrain_history (per-epoch loss breakdown)
+```
+
+A typical `iw_tag` looks like `iw_0p005` (indep_weight=0.005).
+
 ---
 
 ## Running Experiments
@@ -279,7 +327,10 @@ Each script submits a full job grid (seeds × noise dims × noise scales × nois
 | `submit_ablation_reward_only.sh` | B2: reward-only pretraining ablation |
 | `submit_ablation_td3bc.sh` | Ablation A: TD3+BC policy |
 | `submit_ablation_bc.sh` | Ablation A: BC policy |
-| `submit_ablation_baselines.sh` | External baselines (PCA-IQL) |
+| `submit_external_methods.sh` | External comparison methods (PCA-IQL, RIQL, ...) |
+| `submit_sweep_barlow_indep_weight.sh` | Ablation C: Barlow `indep_weight` sweep (15 points) |
+| `submit_sweep_hsic_indep_weight.sh` | Ablation C: HSIC `indep_weight` sweep (15 points) |
+| `submit_sweep_dcor_indep_weight.sh` | Ablation C: dCor `indep_weight` sweep (15 points) |
 
 ```bash
 bash scripts/submit_all.sh
@@ -298,9 +349,12 @@ Then open notebooks under the relevant subdirectory of `notebooks/`.
 ## Recommended Workflow
 
 1. Run `notebooks/main/` experiments for target environments and noise configurations.
-2. Run ablation groups (`ablation_noisy_target/`, `ablation_reward_only/`, `ablation_td3bc/`, `ablation_bc/`) and baseline (`baselines/`).
-3. Use `notebooks/analysis/eval_all.ipynb` to aggregate `results/raw_metrics/`.
-4. Save plots to `results/figures/` and summary tables to `results/tables/`.
+2. Run ablation groups (`ablation_noisy_target/`, `ablation_reward_only/`, `ablation_td3bc/`, `ablation_bc/`) and external comparison methods (`external_methods/`).
+3. Open `notebooks/analysis/01_main_results.ipynb` to generate main IQL noise-sweep bar and line charts and summary tables.
+4. Open `notebooks/analysis/02_ablation_results.ipynb` (set `TARGET_ABLATION`) to compare each ablation variant against the main IQL baseline.
+5. Open `notebooks/analysis/03_external_methods.ipynb` to compare external methods (PCA-IQL, RIQL, Denoised MDP) against IQL.
+6. Open `notebooks/analysis/04_comprehensive.ipynb` for a cross-method overview in aggregated or canonical view.
+7. Open `notebooks/analysis/05_method_selection.ipynb` to identify the best method per environment and generate cross-environment summary figures.
 
 ---
 
@@ -345,7 +399,8 @@ Focus: multi-environment generalization, algorithm robustness, external baseline
 - [ ] Ablation A — algorithm: TD3+BC and BC policies
 - [ ] Ablation B1 + B2 — all environments
 - [ ] External baseline — PCA-IQL across all environments
-- [ ] Analysis — lambda sensitivity, cross-environment summary tables, publication-ready figures
+- [ ] Ablation C — `indep_weight` sweep for Barlow / HSIC / dCor on `ant-medium-v2` + nonlinear
+- [ ] Analysis — cross-environment summary tables, publication-ready figures
 
 ---
 

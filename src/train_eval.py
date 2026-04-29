@@ -67,7 +67,7 @@ def train_iql_from_loader(
         (obs, act, next_obs, rew, done, pure_obs, pure_next_obs)
     """
     repr_mode = repr_mode.lower()
-    valid_modes = {"disentangled", "plain", "raw_noisy", "true_only", "plain_no_priv", "disentangled_no_priv", "pca"}
+    valid_modes = {"disentangled", "plain", "raw_noisy", "true_only", "plain_no_priv", "disentangled_no_priv", "pca", "denoised_mdp", "linear"}
     if repr_mode not in valid_modes:
         raise ValueError(
             "Unsupported repr_mode: {}. Expected one of {}.".format(
@@ -75,7 +75,7 @@ def train_iql_from_loader(
             )
         )
 
-    if repr_mode in {"disentangled", "plain", "plain_no_priv", "disentangled_no_priv", "pca"} and encoder is None:
+    if repr_mode in {"disentangled", "plain", "plain_no_priv", "disentangled_no_priv", "pca", "denoised_mdp", "linear"} and encoder is None:
         raise ValueError("encoder must be provided for repr_mode='{}'".format(repr_mode))
 
     ckpt_dir = _ensure_dir(ckpt_dir)
@@ -117,7 +117,7 @@ def train_iql_from_loader(
                     z = pure_obs
                     next_z = pure_next_obs
                 else:
-                    # Covers: disentangled, plain, plain_no_priv, disentangled_no_priv
+                    # Covers: disentangled, plain, plain_no_priv, disentangled_no_priv, denoised_mdp
                     z, _ = encoder(obs)
                     next_z, _ = encoder(next_obs)
 
@@ -184,7 +184,7 @@ def train_td3bc_from_loader(
         (obs, act, next_obs, rew, done, pure_obs, pure_next_obs)
     """
     repr_mode = repr_mode.lower()
-    valid_modes = {"disentangled", "plain", "raw_noisy", "true_only", "plain_no_priv", "disentangled_no_priv", "pca"}
+    valid_modes = {"disentangled", "plain", "raw_noisy", "true_only", "plain_no_priv", "disentangled_no_priv", "pca", "denoised_mdp", "linear"}
     if repr_mode not in valid_modes:
         raise ValueError(
             "Unsupported repr_mode: {}. Expected one of {}.".format(
@@ -192,7 +192,7 @@ def train_td3bc_from_loader(
             )
         )
 
-    if repr_mode in {"disentangled", "plain", "plain_no_priv", "disentangled_no_priv", "pca"} and encoder is None:
+    if repr_mode in {"disentangled", "plain", "plain_no_priv", "disentangled_no_priv", "pca", "denoised_mdp", "linear"} and encoder is None:
         raise ValueError("encoder must be provided for repr_mode='{}'".format(repr_mode))
 
     ckpt_dir = _ensure_dir(ckpt_dir)
@@ -298,7 +298,7 @@ def train_bc_from_loader(
         (obs, act, next_obs, rew, done, pure_obs, pure_next_obs)
     """
     repr_mode = repr_mode.lower()
-    valid_modes = {"disentangled", "plain", "raw_noisy", "true_only", "plain_no_priv", "disentangled_no_priv", "pca"}
+    valid_modes = {"disentangled", "plain", "raw_noisy", "true_only", "plain_no_priv", "disentangled_no_priv", "pca", "denoised_mdp", "linear"}
     if repr_mode not in valid_modes:
         raise ValueError(
             "Unsupported repr_mode: {}. Expected one of {}.".format(
@@ -306,7 +306,7 @@ def train_bc_from_loader(
             )
         )
 
-    if repr_mode in {"disentangled", "plain", "plain_no_priv", "disentangled_no_priv", "pca"} and encoder is None:
+    if repr_mode in {"disentangled", "plain", "plain_no_priv", "disentangled_no_priv", "pca", "denoised_mdp", "linear"} and encoder is None:
         raise ValueError("encoder must be provided for repr_mode='{}'".format(repr_mode))
 
     ckpt_dir = _ensure_dir(ckpt_dir)
@@ -426,6 +426,107 @@ def save_metrics_json(
     return metrics_path
 
 
+def train_riql_from_loader(
+    riql,
+    train_loader,
+    device: torch.device,
+    epochs: int,
+    ckpt_dir: PathLike,
+    method: str,
+    save_every: int = 10,
+    encoder: Optional[torch.nn.Module] = None,
+    repr_mode: str = "raw_noisy",
+    use_tqdm: bool = False,
+) -> List[Dict[str, float]]:
+    """
+    Train an RIQLAgent using batches from a notebook-managed DataLoader.
+
+    When encoder is None (repr_mode='raw_noisy'), RIQL operates directly on
+    noisy observations. When an encoder is provided, RIQL operates on the
+    encoder's latent representation z, enabling PPF-framework evaluation.
+
+    Expected batch format: (obs, act, next_obs, rew, done, pure_obs, pure_next_obs)
+    """
+    ckpt_dir = _ensure_dir(ckpt_dir)
+    history = []
+
+    if encoder is not None:
+        encoder.eval()
+        for param in encoder.parameters():
+            param.requires_grad = False
+
+    for epoch in range(1, int(epochs) + 1):
+        value_losses = []
+        q_losses = []
+        actor_losses = []
+
+        iterator = train_loader
+        if use_tqdm:
+            try:
+                iterator = tqdm(train_loader, desc="[riql][{}][epoch {}]".format(method, epoch))
+            except Exception:
+                iterator = train_loader
+
+        for batch in iterator:
+            (
+                obs,
+                act,
+                next_obs,
+                rew,
+                done,
+                _pure_obs,
+                _pure_next_obs,
+            ) = [b.to(device) for b in batch]
+
+            with torch.no_grad():
+                if encoder is None:
+                    z = obs
+                    next_z = next_obs
+                else:
+                    z, _ = encoder(obs)
+                    next_z, _ = encoder(next_obs)
+
+            v_loss, q_loss, a_loss = riql.train_step(z, act, next_z, rew, done)
+            value_losses.append(v_loss)
+            q_losses.append(q_loss)
+            actor_losses.append(a_loss)
+
+        epoch_summary = {
+            "epoch": epoch,
+            "value_loss": float(torch.stack(value_losses).mean().item()) if value_losses else 0.0,
+            "q_loss": float(torch.stack(q_losses).mean().item()) if q_losses else 0.0,
+            "actor_loss": float(torch.stack(actor_losses).mean().item()) if actor_losses else 0.0,
+        }
+        history.append(epoch_summary)
+
+        print(
+            "[riql][{}] epoch {}: V={:.4f}, Q={:.4f}, A={:.4f}".format(
+                method,
+                epoch,
+                epoch_summary["value_loss"],
+                epoch_summary["q_loss"],
+                epoch_summary["actor_loss"],
+            )
+        )
+
+        if epoch % int(save_every) == 0 or epoch == int(epochs):
+            ckpt_path = ckpt_dir / "riql_epoch_{}.pth".format(epoch)
+            torch.save(
+                {
+                    "actor": riql.actor.state_dict(),
+                    "q_net": riql.q_net.state_dict(),
+                    "v_net": riql.v_net.state_dict(),
+                    "method": method,
+                    "repr_mode": repr_mode,
+                    "epoch": epoch,
+                },
+                ckpt_path,
+            )
+            print("Saved:", ckpt_path)
+
+    return history
+
+
 @torch.no_grad()
 def eval_policy_on_env(
     iql,
@@ -520,7 +621,7 @@ def eval_policy_on_env(
 
             if encoder is None:
                 z = model_in
-            elif method.startswith(("plain", "disentangled")) or method == "pca":
+            elif method.startswith(("plain", "disentangled", "linear")) or method in {"pca", "denoised_mdp"}:
                 z, _ = encoder(model_in)
             else:
                 raise ValueError("Unknown method: {}".format(method))

@@ -186,6 +186,9 @@ class IQLAgent:
             Tuple of (value_loss, critic_loss, actor_loss).
         """
 
+        reward = reward.unsqueeze(-1) if reward.dim() == 1 else reward  # [B, 1]
+        done   = done.unsqueeze(-1)   if done.dim()   == 1 else done    # [B, 1]
+
         # ------------------------------------------------------------
         # 1) Value update
         # Regress V(z) toward min(Q1, Q2) using expectile loss.

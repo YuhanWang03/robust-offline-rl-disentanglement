@@ -11,6 +11,9 @@ NOISE_SCALE = float(os.environ.get("NOISE_SCALE", 0.5))
 NOISE_TYPE = os.environ.get("NOISE_TYPE", "concat")
 SEED = int(os.environ.get("SEED", 11))
 
+# Independence loss weight (method-specific, overridable per sweep)
+INDEP_WEIGHT = float(os.environ.get("INDEP_WEIGHT", 0.05))
+
 # Training hyperparameters
 BATCH_SIZE = int(os.environ.get("BATCH_SIZE", 256))
 EPOCHS = int(os.environ.get("EPOCHS", 100))

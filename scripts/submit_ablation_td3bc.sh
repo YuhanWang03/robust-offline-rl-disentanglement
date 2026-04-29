@@ -42,11 +42,8 @@ SLURM_GPUS="${SLURM_GPUS:-1}"
 # Notebooks that require noise parameters (disentangled + plain + raw_noisy).
 NOISY_NOTEBOOKS=(
   "exp_disentangled_barlow_td3bc.ipynb"
-  "exp_disentangled_cov_td3bc.ipynb"
   "exp_disentangled_dcor_td3bc.ipynb"
   "exp_disentangled_hsic_td3bc.ipynb"
-  "exp_disentangled_infonce_td3bc.ipynb"
-  "exp_disentangled_l1_td3bc.ipynb"
   "exp_plain_encoder_td3bc.ipynb"
   "exp_raw_noisy_td3bc.ipynb"
 )
@@ -54,8 +51,8 @@ NOISY_NOTEBOOKS=(
 # true_only uses clean states only — no noise sweep needed.
 TRUE_ONLY_NB="exp_true_only_td3bc.ipynb"
 
-SEEDS=(1 2 3)
-NOISE_DIMS=(3 6 8 11)
+SEEDS=(3)
+NOISE_DIMS=(4 8 13 17)
 NOISE_SCALES=(0.5 1.0 1.5 2.0)
 NOISE_TYPES=("nonlinear")
 
