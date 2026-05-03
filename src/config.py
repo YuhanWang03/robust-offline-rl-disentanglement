@@ -14,7 +14,7 @@ CONFIGS_DIR  = PROJECT_ROOT / "configs"
 RESULTS_DIR     = PROJECT_ROOT / "results"
 RAW_METRICS_DIR = RESULTS_DIR / "raw_metrics"
 
-# ── New 4-notebook output structure ──────────────────────────
+# New 4-notebook output structure
 # results/
 # ├── raw_metrics/          ← training outputs, never touched here
 # ├── main/                 ← 01_main_results.ipynb

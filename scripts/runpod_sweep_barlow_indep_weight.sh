@@ -12,7 +12,7 @@ ENV_NAME="ant-medium-v2"
 NOISE_TYPE="nonlinear"
 NOISE_DIM="${NOISE_DIM:-83}"
 NOISE_SCALE="${NOISE_SCALE:-1.0}"
-SEED="${SEED:-2}"
+SEED="${SEED:-3}"
 
 # ── INDEP_WEIGHT sweep values (15 points, log-scale) ─────────
 INDEP_WEIGHTS=(

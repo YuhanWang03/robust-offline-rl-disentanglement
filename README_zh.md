@@ -30,13 +30,39 @@
 | `disentangled_infonce` | PPF + InfoNCE 对比惩罚 |
 | `disentangled_l1` | PPF + L1 互相关惩罚 |
 
-### 外部基线
+### 外部与对比方法
+
+**不使用 PPF（无特权监督）：**
 
 | 方法 | 说明 |
 |---|---|
 | `pca` | PCA-IQL——将带噪观测投影到前 k 个主成分（无神经网络编码器，无特权信息） |
-| `riql` | RIQL——具备噪声感知价值估计的鲁棒 IQL 变体 |
-| `denoised_mdp` | Denoised MDP——学习一个隐空间世界模型，显式分离任务相关维度与噪声维度 |
+| `denoised_mdp` | Denoised MDP——自监督隐空间世界模型，显式分离任务相关维度与噪声维度 |
+| `raw_noisy_riql` | RIQL 算法，直接在原始带噪观测上运行（无编码器） |
+| `raw_noisy_td3bc` | TD3+BC 算法，直接在原始带噪观测上运行（无编码器） |
+| `raw_noisy_bc` | BC 算法，直接在原始带噪观测上运行（无编码器） |
+
+**PPF 框架内（已发表算法，plain 编码器）：**
+
+| 方法 | 说明 |
+|---|---|
+| `plain_riql` | PPF（PlainEncoder）+ RIQL（Yang et al., ICLR 2024） |
+| `plain_td3bc` | PPF（PlainEncoder）+ TD3+BC（Fujimoto & Gu, NeurIPS 2021） |
+| `plain_bc` | PPF（PlainEncoder）+ BC |
+
+**PPF 框架内（解耦编码器 + RIQL）：**
+
+| 方法 | 说明 |
+|---|---|
+| `disentangled_barlow_riql` | PPF（Barlow Twins）+ RIQL |
+| `disentangled_dcor_riql` | PPF（dCor）+ RIQL |
+| `disentangled_hsic_riql` | PPF（HSIC）+ RIQL |
+
+**PPF 框架内（线性编码器消融）：**
+
+| 方法 | 说明 |
+|---|---|
+| `linear_iql` | 监督式单仿射层（LinearEncoder）+ IQL——PlainEncoder 的线性对照组 |
 
 ---
 
@@ -46,7 +72,9 @@
 |---|---|
 | **B1 — 去除特权监督** | 移除干净状态监督，编码器改为在带噪下一观测上做预测 |
 | **B2 — 仅奖励预训练** | 移除动力学损失，仅保留奖励预测 + 解耦正则 |
-| **A — 算法消融** | 将 IQL 替换为 TD3+BC 或 BC，编码器预训练不变 |
+| **A — 算法消融（TD3+BC）** | 将 IQL 替换为 TD3+BC，编码器预训练不变 |
+| **A — 算法消融（BC）** | 将 IQL 替换为 BC，编码器预训练不变 |
+| **A — 算法消融（RIQL）** | 将 IQL 替换为 RIQL（Yang et al., ICLR 2024），编码器预训练不变 |
 | **C — independence loss weight 扫描** | 在 `ant-medium-v2` + nonlinear 噪声下，对 Barlow / HSIC / dCor 扫描 `indep_weight`，诊断超参数敏感性 |
 
 ---
@@ -133,26 +161,40 @@ robust-offline-rl-disentanglement/
 │   ├── config.py              # 全局路径常量
 │   ├── experiment_config.py   # 读取环境变量覆盖（ENV_NAME、SEED、INDEP_WEIGHT 等）
 │   ├── dataset.py             # NoisyOfflineRLDataset
-│   ├── encoder.py             # DisentangledEncoder
+│   ├── encoder.py             # DisentangledEncoder、PlainEncoder
+│   ├── linear_encoder.py      # LinearEncoder（监督式线性编码器，PPF 框架内）
 │   ├── pca_encoder.py         # PCAEncoder（外部基线）
+│   ├── denoised_mdp_encoder.py # Denoised MDP 编码器（外部基线）
 │   ├── iql.py                 # IQLAgent
 │   ├── td3bc.py               # TD3BCAgent
 │   ├── bc.py                  # BCAgent
+│   ├── riql.py                # RIQLAgent（鲁棒 IQL，集成 Q 网络）
 │   ├── train_eval.py          # 训练循环 + 评估工具函数
 │   ├── utils.py
 │   └── visualization.py
 ├── scripts/
-│   ├── run_all.sh                            # 本地执行（编辑 NOTEBOOKS 数组）
-│   ├── submit_all.sh                         # Slurm：主 IQL 实验
-│   ├── submit_true_only.sh                   # Slurm：true_only 基线
-│   ├── submit_ablation_reward_only.sh        # Slurm：B2 仅奖励消融
-│   ├── submit_ablation_td3bc.sh              # Slurm：算法消融 A（TD3+BC）
-│   ├── submit_ablation_bc.sh                 # Slurm：算法消融 A（BC）
-│   ├── submit_external_methods.sh            # Slurm：外部对比方法（PCA-IQL、RIQL 等）
-│   ├── submit_sweep_barlow_indep_weight.sh   # Slurm：消融 C — Barlow indep_weight 扫描
-│   ├── submit_sweep_hsic_indep_weight.sh     # Slurm：消融 C — HSIC indep_weight 扫描
-│   ├── submit_sweep_dcor_indep_weight.sh     # Slurm：消融 C — dCor indep_weight 扫描
-│   └── runpod_sweep_barlow_indep_weight.sh   # RunPod：Barlow indep_weight 扫描（单 GPU 两并发）
+│   ├── run_all.sh                              # 本地执行（编辑 NOTEBOOKS 数组）
+│   ├── submit_all.sh                           # Slurm：主 IQL 实验
+│   ├── submit_true_only.sh                     # Slurm：true_only 基线
+│   ├── submit_ablation_noisy_target.sh         # Slurm：B1 无特权监督消融
+│   ├── submit_ablation_reward_only.sh          # Slurm：B2 仅奖励消融
+│   ├── submit_ablation_td3bc.sh                # Slurm：算法消融 A（TD3+BC）
+│   ├── submit_ablation_bc.sh                   # Slurm：算法消融 A（BC）
+│   ├── submit_external_methods.sh              # Slurm：外部与对比方法
+│   ├── submit_sweep_barlow_indep_weight.sh     # Slurm：消融 C — Barlow indep_weight 扫描
+│   ├── submit_sweep_hsic_indep_weight.sh       # Slurm：消融 C — HSIC indep_weight 扫描
+│   ├── submit_sweep_dcor_indep_weight.sh       # Slurm：消融 C — dCor indep_weight 扫描
+│   ├── runpod_submit_all.sh                    # RunPod：主 IQL 实验
+│   ├── runpod_submit_true_only.sh              # RunPod：true_only 基线
+│   ├── runpod_submit_ablation_noisy_target.sh  # RunPod：B1 无特权监督消融
+│   ├── runpod_submit_ablation_reward_only.sh   # RunPod：B2 仅奖励消融
+│   ├── runpod_submit_ablation_td3bc.sh         # RunPod：算法消融 A（TD3+BC）
+│   ├── runpod_submit_ablation_bc.sh            # RunPod：算法消融 A（BC）
+│   ├── runpod_submit_external_methods.sh       # RunPod：外部与对比方法
+│   ├── runpod_sweep_barlow_indep_weight.sh     # RunPod：Barlow indep_weight 扫描
+│   ├── runpod_queue_launcher.sh                # RunPod：顺序任务队列启动器
+│   ├── run_two_on_one_gpu.sh                   # 单 GPU 并行执行两个 notebook
+│   └── run_three_on_one_gpu.sh                 # 单 GPU 并行执行三个 notebook
 ├── notebooks/
 │   ├── main/                      # PPF 主实验（IQL）
 │   │   ├── exp_true_only.ipynb
@@ -200,20 +242,40 @@ robust-offline-rl-disentanglement/
 │   │   ├── exp_disentangled_dcor_bc.ipynb
 │   │   ├── exp_disentangled_infonce_bc.ipynb
 │   │   └── exp_disentangled_l1_bc.ipynb
-│   ├── external_methods/          # 外部对比方法
-│   │   ├── exp_pca_iql.ipynb
-│   │   ├── exp_riql.ipynb
-│   │   └── exp_denoised_mdp.ipynb
+│   ├── ablation_riql/             # 消融 A：RIQL 策略
+│   │   ├── exp_true_only_riql.ipynb
+│   │   ├── exp_raw_noisy_riql.ipynb
+│   │   ├── exp_plain_encoder_riql.ipynb
+│   │   ├── exp_disentangled_barlow_riql.ipynb
+│   │   ├── exp_disentangled_cov_riql.ipynb
+│   │   ├── exp_disentangled_hsic_riql.ipynb
+│   │   ├── exp_disentangled_dcor_riql.ipynb
+│   │   ├── exp_disentangled_infonce_riql.ipynb
+│   │   └── exp_disentangled_l1_riql.ipynb
+│   ├── external_methods/          # 外部与对比方法
+│   │   ├── exp_pca_iql.ipynb                    # PCA-IQL（无 PPF，无神经编码器）
+│   │   ├── exp_linear_iql.ipynb                 # LinearEncoder + IQL（监督线性，PPF 框架内）
+│   │   ├── exp_denoised_mdp.ipynb               # Denoised MDP（自监督，无 PPF）
+│   │   ├── exp_plain_riql.ipynb                 # PPF（PlainEncoder）+ RIQL
+│   │   ├── exp_plain_td3bc.ipynb                # PPF（PlainEncoder）+ TD3+BC
+│   │   ├── exp_plain_bc.ipynb                   # PPF（PlainEncoder）+ BC
+│   │   ├── exp_raw_noisy_riql.ipynb             # 无编码器 + RIQL
+│   │   ├── exp_raw_noisy_td3bc.ipynb            # 无编码器 + TD3+BC
+│   │   ├── exp_raw_noisy_bc.ipynb               # 无编码器 + BC
+│   │   ├── exp_disentangled_barlow_riql.ipynb   # PPF（Barlow）+ RIQL
+│   │   ├── exp_disentangled_dcor_riql.ipynb     # PPF（dCor）+ RIQL
+│   │   └── exp_disentangled_hsic_riql.ipynb     # PPF（HSIC）+ RIQL
 │   ├── ablation_indep_weight/     # C：independence loss weight 扫描（Barlow / HSIC / dCor）
 │   │   ├── exp_disentangled_barlow_indep_sweep.ipynb
 │   │   ├── exp_disentangled_hsic_indep_sweep.ipynb
 │   │   └── exp_disentangled_dcor_indep_sweep.ipynb
 │   └── analysis/                  # 纯分析——只读 results/raw_metrics/
 │       ├── 01_main_results.ipynb         # 主实验 IQL 结果（柱状图 + 折线图、汇总表）
-│       ├── 02_ablation_results.ipynb     # 四类消融对比（BC、TD3+BC、仅奖励、无特权）
-│       ├── 03_external_methods.ipynb     # 外部基线对比（PCA-IQL、RIQL、Denoised MDP）
+│       ├── 02_ablation_results.ipynb     # 消融对比（BC、TD3+BC、RIQL、仅奖励、无特权）
+│       ├── 03_external_methods.ipynb     # 外部与对比方法结果
 │       ├── 04_comprehensive.ipynb        # 跨方法综合对比（聚合视图 / 典型配置视图）
-│       └── 05_method_selection.ipynb     # 最优方法筛选 + 跨环境汇总图
+│       ├── 05_method_selection.ipynb     # 最优方法筛选 + 跨环境汇总图
+│       └── 06_indep_weight_sweep.ipynb   # 消融 C：indep_weight 扫描可视化
 ├── artifacts/
 │   ├── checkpoints/
 │   ├── executed/
@@ -324,10 +386,11 @@ bash scripts/run_all.sh
 |---|---|
 | `submit_all.sh` | 主 IQL 实验（PPF 方法） |
 | `submit_true_only.sh` | `true_only` 基线（仅 seed sweep） |
+| `submit_ablation_noisy_target.sh` | B1：无特权监督消融 |
 | `submit_ablation_reward_only.sh` | B2：仅奖励预训练消融 |
 | `submit_ablation_td3bc.sh` | 消融 A：TD3+BC 策略 |
 | `submit_ablation_bc.sh` | 消融 A：BC 策略 |
-| `submit_external_methods.sh` | 外部对比方法（PCA-IQL、RIQL 等） |
+| `submit_external_methods.sh` | 外部与对比方法 |
 | `submit_sweep_barlow_indep_weight.sh` | 消融 C：Barlow `indep_weight` 扫描（15 个点） |
 | `submit_sweep_hsic_indep_weight.sh` | 消融 C：HSIC `indep_weight` 扫描（15 个点） |
 | `submit_sweep_dcor_indep_weight.sh` | 消融 C：dCor `indep_weight` 扫描（15 个点） |
@@ -349,12 +412,13 @@ jupyter lab
 ## 推荐工作流
 
 1. 运行 `notebooks/main/` 中的主实验（目标环境 × 噪声配置）。
-2. 运行各消融组（`ablation_noisy_target/`、`ablation_reward_only/`、`ablation_td3bc/`、`ablation_bc/`）和外部对比方法（`external_methods/`）。
+2. 运行各消融组（`ablation_noisy_target/`、`ablation_reward_only/`、`ablation_td3bc/`、`ablation_bc/`、`ablation_riql/`）和外部对比方法（`external_methods/`）。
 3. 打开 `notebooks/analysis/01_main_results.ipynb`，生成主实验 IQL 噪声 sweep 柱状图、折线图和汇总表。
 4. 打开 `notebooks/analysis/02_ablation_results.ipynb`（设置 `TARGET_ABLATION`），将各消融变体与主实验 IQL 基线进行对比。
-5. 打开 `notebooks/analysis/03_external_methods.ipynb`，对比外部方法（PCA-IQL、RIQL、Denoised MDP）与 IQL 的性能。
+5. 打开 `notebooks/analysis/03_external_methods.ipynb`，对比外部与对比方法的性能。
 6. 打开 `notebooks/analysis/04_comprehensive.ipynb`，以聚合视图或典型配置视图对所有方法进行综合对比。
 7. 打开 `notebooks/analysis/05_method_selection.ipynb`，筛选各环境最优方法并生成跨环境汇总图。
+8. 打开 `notebooks/analysis/06_indep_weight_sweep.ipynb`，可视化消融 C 的 `indep_weight` 敏感性扫描结果。
 
 ---
 
